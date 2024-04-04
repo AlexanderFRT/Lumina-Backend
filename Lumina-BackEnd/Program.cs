@@ -1,4 +1,7 @@
 
+using Lumina_BackEnd.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Lumina_BackEnd
 {
     public class Program
@@ -13,6 +16,11 @@ namespace Lumina_BackEnd
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddEntityFrameworkNpgsql()
+                .AddDbContext<ApiDbContext>(opt => 
+                opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaDbConnection")));
+            builder.Services.AddAuthorization();
+            builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
             var app = builder.Build();
 
