@@ -19,6 +19,8 @@ namespace Lumina_BackEnd
             builder.Services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ApiDbContext>(opt => 
                 opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaDbConnection")));
+            builder.Services.AddAuthorization();
+            builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
             var app = builder.Build();
 

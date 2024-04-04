@@ -1,6 +1,6 @@
 ﻿namespace Lumina_BackEnd.Models
 {
-    public class Transactions
+    public class Log
     {
     }
 }
