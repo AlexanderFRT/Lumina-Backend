@@ -14,19 +14,19 @@ namespace Lumina_BackEnd.Repository.User
 
         public async Task<Models.User> GetUser(int id)
         {
-            return await _context.User.FindAsync(id);
+            return await _context.Users.FindAsync(id);
         }
 
         public async Task<Models.User> AddUser(Models.User usr)
         {
-            _context.User.Add(usr);
+            _context.Users.Add(usr);
             await _context.SaveChangesAsync();
             return usr;
         }
 
         public async Task<List<Models.User>> GetUsers()
         {
-            return await _context.User.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
     }
 }
