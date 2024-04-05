@@ -1,5 +1,6 @@
 
 using Lumina_BackEnd.Data;
+using Lumina_BackEnd.Repository.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lumina_BackEnd
@@ -19,6 +20,7 @@ namespace Lumina_BackEnd
             builder.Services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ApiDbContext>(opt => 
                 opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaDbConnection")));
+            builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddAuthorization();
             builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
@@ -32,12 +34,8 @@ namespace Lumina_BackEnd
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }

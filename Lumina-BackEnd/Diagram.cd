@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lumina_BackEnd.Models.Log">
-    <Position X="0.75" Y="9.75" Width="1.5" />
+    <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAACAAgAAAAAAAAAAAAAAAACAAQ=</HashCode>
       <FileName>Models\Log.cs</FileName>
