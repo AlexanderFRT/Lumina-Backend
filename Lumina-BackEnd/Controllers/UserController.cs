@@ -1,9 +1,9 @@
-﻿using Lumina_BackEnd.Repository.User;
+﻿using Lumina_Backend.Repository.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Lumina_BackEnd.Models;
+using Lumina_Backend.Models;
 
-namespace Lumina_BackEnd.Controllers
+namespace Lumina_Backend.Controllers
 {
     [Authorize]
     [ApiController]

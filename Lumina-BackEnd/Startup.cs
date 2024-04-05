@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Lumina_BackEnd
+namespace Lumina_Backend
 {
 
     public class Startup

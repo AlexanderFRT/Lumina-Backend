@@ -1,7 +1,7 @@
-﻿using Lumina_BackEnd.Data;
+﻿using Lumina_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lumina_BackEnd.Repository.User
+namespace Lumina_Backend.Repository.User
 {
     public class UserRepository : IUserRepository
     {

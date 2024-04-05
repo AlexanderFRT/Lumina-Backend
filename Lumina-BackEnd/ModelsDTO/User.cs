@@ -1,6 +1,6 @@
-﻿using Lumina_BackEnd.Models;
+﻿using Lumina_Backend.Models;
 
-namespace Lumina_BackEnd.ModelsDTO
+namespace Lumina_Backend.ModelsDTO
 {
     public class User
     {

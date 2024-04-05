@@ -1,9 +1,9 @@
 
-using Lumina_BackEnd.Data;
-using Lumina_BackEnd.Repository.User;
+using Lumina_Backend.Data;
+using Lumina_Backend.Repository.User;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lumina_BackEnd
+namespace Lumina_Backend
 {
     public class Program
     {

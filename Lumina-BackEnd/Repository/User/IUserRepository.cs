@@ -1,6 +1,6 @@
-﻿using Lumina_BackEnd.Models;
+﻿using Lumina_Backend.Models;
 
-namespace Lumina_BackEnd.Repository.User
+namespace Lumina_Backend.Repository.User
 {
     public interface IUserRepository
     {

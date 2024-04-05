@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Lumina_BackEnd.Migrations
+namespace Lumina_Backend.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

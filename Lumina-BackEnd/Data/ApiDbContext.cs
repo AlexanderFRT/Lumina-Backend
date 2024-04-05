@@ -1,7 +1,7 @@
-﻿using Lumina_BackEnd.Models;
+﻿using Lumina_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lumina_BackEnd.Data
+namespace Lumina_Backend.Data
 {
     public class ApiDbContext : DbContext
     {

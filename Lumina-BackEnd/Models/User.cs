@@ -1,4 +1,4 @@
-﻿namespace Lumina_BackEnd.Models;
+﻿namespace Lumina_Backend.Models;
 
 public class User : BaseEntity
 {

@@ -1,6 +1,6 @@
-@Lumina_BackEnd_HostAddress = http://localhost:5001
+@Lumina_Backend_HostAddress = http://localhost:5001
 
-GET {{Lumina_BackEnd_HostAddress}}/weatherforecast/
+GET {{Lumina_Backend_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

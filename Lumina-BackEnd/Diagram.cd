@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Lumina_BackEnd.Models.Account">
+  <Class Name="Lumina_Backend.Models.Account">
     <Position X="2.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACBAAAAAAAAAAAAAAgAAAgAAAgAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Models\Account.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Lumina_BackEnd.Models.BaseEntity">
+  <Class Name="Lumina_Backend.Models.BaseEntity">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAEAAAAAAAAAAAAAAAAgAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Models\BaseEntity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Lumina_BackEnd.Models.Log">
+  <Class Name="Lumina_Backend.Models.Log">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAACAAgAAAAAAAAAAAAAAAACAAQ=</HashCode>
       <FileName>Models\Log.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Lumina_BackEnd.Models.Security">
+  <Class Name="Lumina_Backend.Models.Security">
     <Position X="8.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAARAAIGEAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Security.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Lumina_BackEnd.Models.Transaction">
+  <Class Name="Lumina_Backend.Models.Transaction">
     <Position X="4.25" Y="3" Width="2" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
@@ -38,7 +38,7 @@
       <FileName>Models\Transaction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Lumina_BackEnd.Models.User">
+  <Class Name="Lumina_Backend.Models.User">
     <Position X="6.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQACAAAYACAAAAAAAAIAEQAACCAQAAAAAAAAA=</HashCode>
