@@ -1,0 +1,29 @@
+header{
+    background-color: #00122c;
+     color: aliceblue;
+     font-family: sans-serif;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    min-width: 300px;
+    width: 90vw;
+    margin: auto;
+    padding: 1rem;
+}
+#logo{
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+#logo img{
+    padding: 0 0.7rem;
+}
+.btn{
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius:30px ;
+
+}
