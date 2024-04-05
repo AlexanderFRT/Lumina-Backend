@@ -1,6 +1,6 @@
 ﻿namespace Lumina_BackEnd.Models;
 
-public class Transaction 
+public class Transaction : BaseEntity
 {
     public int AccountID { get; set; }
     public Account Account { get; set; }
