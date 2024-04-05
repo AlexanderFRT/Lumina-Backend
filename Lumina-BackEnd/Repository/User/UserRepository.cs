@@ -1,4 +1,5 @@
 ﻿using Lumina_BackEnd.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lumina_BackEnd.Repository.User
 {
@@ -13,19 +14,19 @@ namespace Lumina_BackEnd.Repository.User
 
         public async Task<Models.User> GetUser(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await _context.User.FindAsync(id);
         }
 
         public async Task<Models.User> AddUser(Models.User usr)
         {
-            _context.Users.Add(usr);
+            _context.User.Add(usr);
             await _context.SaveChangesAsync();
             return usr;
         }
 
         public async Task<List<Models.User>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.User.ToListAsync();
         }
     }
 }

@@ -23,8 +23,13 @@ namespace Lumina_BackEnd.Controllers
         {
             return Ok(await _userRepository.AddUser(user));
         }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await _userRepository.GetUser(id));
+        }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
