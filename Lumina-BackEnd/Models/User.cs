@@ -1,20 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿namespace Lumina_BackEnd.Models;
 
-namespace Lumina_BackEnd.Models
+public class User : BaseEntity
 {
-    public class User
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
-        public int UserId { get;}
-        public string username { get; set; }
-        public string password { get; }
-        public string email { get; set; }
-        public string fullName { get; set; }
-        public DateTime dateOfBirth { get; set; }
-        public string address { get; set; }
-        public string profileImage { get; set; }
-        public int dni {  get; set; }
-    }
+    public string UserName { get; set; }
+    public string Password { get; set; } //Hashed
+    public string SessionToken { get; set; }
+    public string Email { get; set; }
+    public string FullName { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public string Address { get; set; }
+    public string ProfileImage { get; set; }
+    public string DNI { get; set; }
+
+    public ICollection<Account> Accounts { get; set; }
+    public ICollection<Security> Securities { get; set; }
+    public ICollection<Log> Logs { get; set; }
 }
+

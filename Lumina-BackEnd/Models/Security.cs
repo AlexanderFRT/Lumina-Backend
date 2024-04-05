@@ -1,17 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿namespace Lumina_BackEnd.Models;
 
-namespace Lumina_BackEnd.Models
+public class Security : BaseEntity
 {
-    public class Security
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int securityId { get;}
-        public int userId { get; }
-        public string securityQuestion { get; set; }
-        public string securityAnswer { get; set; }
+    public int UserId { get; set; }
+    public User User { get; set; }
 
-
-    }
+    public string SecurityQuestions { get; set; }
+    public string SecurityAnswers { get; set; }
 }

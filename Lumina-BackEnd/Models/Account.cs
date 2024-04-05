@@ -1,17 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿namespace Lumina_BackEnd.Models;
 
-namespace Lumina_BackEnd.Models
+public class Account : BaseEntity
 {
-    public class Account
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int accountId { get;}
-        public int userId { get;}
+    public int UserID { get; set; }
+    public User User { get; set; }
 
-        public string accountType { get; set; }
-        public decimal balance { get; set; }
-        public string accountNumber { get; set; }
-    }
+    public AccountType Type { get; set; }
+    public decimal Balance { get; set; }
+    public int AccountNumber { get; set; }
+
+    public ICollection<Transaction> Transactions { get; set; }
+}
+
+public enum AccountType
+{
+    Checking,
+    Savings
 }
