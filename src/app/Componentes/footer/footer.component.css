@@ -1,0 +1,46 @@
+a{
+    text-decoration: none;
+    color: aliceblue;
+}
+.container_header{
+    background-color: #00122c;
+    font-family: sans-serif;
+    color: aliceblue;
+}
+.container{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    width: 85vw;
+    margin: auto;
+    padding: 15px 0;
+    letter-spacing: 1.5px;
+}
+li{
+    font-size: 0.8rem;
+    padding: 10px 15px 10px 0;
+}
+li a:hover{
+    color: rgb(219, 170, 45);
+}
+
+#logo{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: auto 0;
+}
+#logo img{
+    padding: 0 0.7rem;
+}
+.lista_elementos{
+    display: flex;
+    justify-content: space-between;
+    width: 20vw;
+    min-width: min-content;
+    padding: 15px 0;
+}
+span{
+    font-weight: bold;
+}

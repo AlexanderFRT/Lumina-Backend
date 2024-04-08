@@ -12,18 +12,27 @@ header{
     width: 90vw;
     margin: auto;
     padding: 1rem;
+    
+}
+a{
+    text-decoration: none;
+    color: aliceblue;
 }
 #logo{
     display: flex;
     align-items: center;
+    font-weight: bold;
     font-size: 1.5rem;
 }
 #logo img{
     padding: 0 0.7rem;
 }
 .btn{
-    padding: 0.5rem;
+    padding: 0.6rem 1rem;
     margin: 0.5rem;
     border-radius:30px ;
-
+    font-weight: bold;
+}
+.btn:hover{
+    background-color: rgb(179, 144, 211);
 }
