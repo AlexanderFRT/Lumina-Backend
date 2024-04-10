@@ -3,7 +3,7 @@
 public class Transaction : BaseEntity
 {
     public int AccountID { get; set; }
-    public Account Account { get; set; }
+    public virtual Account Account { get; set; }
 
     public TransactionType Type { get; set; }
     public decimal Amount { get; set; }

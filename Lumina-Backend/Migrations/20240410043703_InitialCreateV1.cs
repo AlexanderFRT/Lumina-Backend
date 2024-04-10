@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lumina_Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateV3 : Migration
+    public partial class InitialCreateV1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,13 +20,13 @@ namespace Lumina_Backend.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserName = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
-                    SessionToken = table.Column<string>(type: "text", nullable: false),
+                    SessionToken = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    FullName = table.Column<string>(type: "text", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    ProfileImage = table.Column<string>(type: "text", nullable: false),
-                    DNI = table.Column<string>(type: "text", nullable: false),
+                    FullName = table.Column<string>(type: "text", nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    ProfileImage = table.Column<string>(type: "text", nullable: true),
+                    DNI = table.Column<string>(type: "text", nullable: true),
                     Status = table.Column<int>(type: "integer", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)

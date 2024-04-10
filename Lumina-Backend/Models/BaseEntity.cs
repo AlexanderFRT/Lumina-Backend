@@ -9,4 +9,10 @@ public class BaseEntity
     public DateTime DateAdded { get; set; }
 
     public DateTime DateUpdated { get; set; }
+
+    public BaseEntity()
+    {
+        DateAdded = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
+        DateUpdated = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
+    }
 }

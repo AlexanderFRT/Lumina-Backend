@@ -1,5 +1,6 @@
 ﻿using Lumina_Backend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace Lumina_Backend.Data
 {
@@ -30,26 +31,26 @@ namespace Lumina_Backend.Data
                 .ToTable("Transactions");
 
             // Define las foreign keys
-            builder.Entity<Account>()
-                .HasOne(a => a.User)
-                .WithMany(u => u.Accounts)
+            builder.Entity<User>()
+                .HasMany(u => u.Accounts)
+                .WithOne(a => a.User)
                 .HasForeignKey(a => a.UserID);
 
-            builder.Entity<Security>()
-                .HasOne(s => s.User)
-                .WithMany(u => u.Securities)
+            builder.Entity<User>()
+                .HasMany(u => u.Securities)
+                .WithOne(s => s.User)
                 .HasForeignKey(s => s.UserId);
 
-            builder.Entity<Log>()
-                .HasOne(l => l.User)
-                .WithMany(u => u.Logs)
-                .HasForeignKey(l => l.UserId);
+            builder.Entity<User>()
+                .HasMany(u => u.Logs)
+                .WithOne(l => l.User)
+                .HasForeignKey(l => l.UserId); 
 
             builder.Entity<Transaction>()
                 .HasOne(t => t.Account)
                 .WithMany(a => a.Transactions)
                 .HasForeignKey(t => t.AccountID);
-        }
+        }   
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Log> Logs { get; set; }

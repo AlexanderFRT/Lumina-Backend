@@ -3,6 +3,7 @@ using Lumina_Backend.Data;
 using Lumina_Backend.Repository.User;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Lumina_Backend;
 
 public class Program
@@ -22,7 +23,7 @@ public class Program
             .AddDbContext<ApiDbContext>(opt =>
                 opt.UseNpgsql(connectionString));
 
-        //  Cuando ya se vaya a hacer el despliegue local en Docker se elimina la env variable connectionString y se modifica el servicio nuevamente con el código de abajo, y se habilita el string del appsettings.json
+        //  Cuando ya se vaya a hacer el despliegue local en Docker se elimina la env variable connectionString y se modifica el servicio nuevamente con el cï¿½digo de abajo, y se habilita el string del appsettings.json
         //      opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaConnection")));
 
         builder.Services.AddTransient<IUserRepository, UserRepository>();
