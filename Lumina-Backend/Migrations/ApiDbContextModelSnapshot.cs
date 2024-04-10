@@ -179,17 +179,15 @@ namespace Lumina_Backend.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("DNI")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateUpdated")
@@ -200,7 +198,6 @@ namespace Lumina_Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
@@ -208,11 +205,9 @@ namespace Lumina_Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ProfileImage")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("SessionToken")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Status")

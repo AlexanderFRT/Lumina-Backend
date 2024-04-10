@@ -16,64 +16,41 @@ namespace Lumina_Backend.Data
             base.OnModelCreating(builder);
 
             builder.Entity<Account>()
-            .ToTable("Accounts");
-
-            builder.Entity<Account>()
-            .HasKey(b => b.Id);
+                .ToTable("Accounts");
 
             builder.Entity<Log>()
                 .ToTable("Logs");
 
-            builder.Entity<Log>()
-            .HasKey(b => b.Id);
-
             builder.Entity<Security>()
                 .ToTable("Securities");
-
-            builder.Entity<Security>()
-            .HasKey(b => b.Id);
 
             builder.Entity<User>()
                 .ToTable("Users");
 
-            builder.Entity<User>()
-            .HasKey(b => b.Id);
-
             builder.Entity<Transaction>()
                 .ToTable("Transactions");
 
-            builder.Entity<Transaction>()
-            .HasKey(b => b.Id);
-
             // Define las foreign keys
-            builder.Entity<Account>()
-                .HasOne(a => a.User)
-                .WithMany(u => u.Accounts)
-                .HasForeignKey(a => a.UserID)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
+            builder.Entity<User>()
+                .HasMany(u => u.Accounts)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserID);
 
-            builder.Entity<Security>()
-                .HasOne(s => s.User)
-                .WithMany(u => u.Securities)
-                .HasForeignKey(s => s.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
+            builder.Entity<User>()
+                .HasMany(u => u.Securities)
+                .WithOne(s => s.User)
+                .HasForeignKey(s => s.UserId);
 
-            builder.Entity<Log>()
-                .HasOne(l => l.User)
-                .WithMany(u => u.Logs)
-                .HasForeignKey(l => l.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
+            builder.Entity<User>()
+                .HasMany(u => u.Logs)
+                .WithOne(l => l.User)
+                .HasForeignKey(l => l.UserId); 
 
             builder.Entity<Transaction>()
                 .HasOne(t => t.Account)
                 .WithMany(a => a.Transactions)
-                .HasForeignKey(t => t.AccountID)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
-        }
+                .HasForeignKey(t => t.AccountID);
+        }   
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Log> Logs { get; set; }

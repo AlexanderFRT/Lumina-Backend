@@ -22,8 +22,8 @@ namespace Lumina_Backend.Repository.User
         {
             try
             {
-               var addedUser = await this._context.Users.AddAsync(user);
-               await this._context.SaveChangesAsync();
+               var addedUser = await _context.Users.AddAsync(user);
+               await _context.SaveChangesAsync();
                
                 return user;
             }
