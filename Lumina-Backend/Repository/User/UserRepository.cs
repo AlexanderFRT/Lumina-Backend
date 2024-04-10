@@ -1,4 +1,5 @@
 ﻿using Lumina_Backend.Data;
+using Lumina_Backend.ModelsDTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lumina_Backend.Repository.User
@@ -36,6 +37,24 @@ namespace Lumina_Backend.Repository.User
         public async Task<List<Models.User>> GetUsers()
         {
             return await _context.Users.ToListAsync();
+        }
+
+        public async Task<Login> login(Login login)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == login.UserName && u.Password == login.Password);
+            if (user != null)
+            {
+                return new Login()
+                {
+                    UserName = user.UserName,
+                    Password = user.Password,
+                    SessionToken = user.SessionToken
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

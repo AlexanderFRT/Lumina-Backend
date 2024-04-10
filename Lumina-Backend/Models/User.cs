@@ -12,8 +12,8 @@ public class User : BaseEntity
     public string ProfileImage { get; set; }
     public string DNI { get; set; }
 
-    public ICollection<Account> Accounts { get; set; }
-    public ICollection<Security> Securities { get; set; }
-    public ICollection<Log> Logs { get; set; }
+    public ICollection<Account> Accounts { get; set; } = null;
+    public ICollection<Security> Securities { get; set; } = null;
+    public ICollection<Log> Logs { get; set; } = null;
 }
 
