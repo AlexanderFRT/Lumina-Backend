@@ -1,4 +1,4 @@
-﻿using Lumina_Backend.Models;
+using Lumina_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lumina_Backend.Data

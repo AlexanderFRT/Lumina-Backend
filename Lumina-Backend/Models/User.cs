@@ -11,14 +11,8 @@ public class User : BaseEntity
     public string? Address { get; set; }
     public string? ProfileImage { get; set; }
     public string? DNI { get; set; }
-
-    public User()
-    {
-        DateOfBirth = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
-    }
-
+    
     public ICollection<Account> Accounts { get; set; }
     public ICollection<Security> Securities { get; set; }
     public ICollection<Log> Logs { get; set; }
 }
-

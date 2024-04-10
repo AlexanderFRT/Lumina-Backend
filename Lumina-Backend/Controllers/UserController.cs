@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Lumina_Backend.Models;
+using Lumina_Backend.ModelsDTO;
 
 namespace Lumina_Backend.Controllers
 {
-    [Authorize]
+
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -17,12 +18,26 @@ namespace Lumina_Backend.Controllers
             _userRepository = userRepository;
         }
 
+        [HttpPost("login")]
+        public async Task<ActionResult> Login(Login login)
+        {
+            Login loggedUser = await _userRepository.login(login);
+
+            if (loggedUser != null)
+            {
+                return Ok(loggedUser);
+            }
+            else
+                return BadRequest("User not found");
+        }
+
+
         [HttpPost]
-        public async Task<ActionResult> AddUser(User user)
+        public async Task<ActionResult> AddUser(Models.User user)
         {
             if (ModelState.IsValid)
             {
-                User newUser = new User()
+                Models.User newUser = new Models.User()
                 {
                     UserName = user.UserName,
                     Password = user.Password,
@@ -31,13 +46,10 @@ namespace Lumina_Backend.Controllers
                     FullName = user.FullName,
                     DateOfBirth = user.DateOfBirth,
                     Address = user.Address,
-                    DNI = user.DNI,
-                    Accounts = user.Accounts,
-                    Securities = user.Securities,
-                    Logs = user.Logs,
+                    DNI = user.DNI
                 };
 
-                User createdUser = await _userRepository.AddUser(newUser);
+                Models.User createdUser = await _userRepository.AddUser(newUser);
 
                 if (createdUser != null)
                 {
