@@ -1,10 +1,10 @@
-﻿using Lumina_Backend.Repository.User;
+﻿/*using Lumina_Backend.Repository.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Lumina_Backend.Models;
 using Lumina_Backend.ModelsDTO;
 
-namespace Lumina_Backend.Controllers
+ namespace Lumina_Backend.Controllers
 {
 
     [ApiController]
@@ -77,3 +77,4 @@ namespace Lumina_Backend.Controllers
 
     }
 }
+*/

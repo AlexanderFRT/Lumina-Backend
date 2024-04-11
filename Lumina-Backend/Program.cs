@@ -1,6 +1,6 @@
 
 using Lumina_Backend.Data;
-using Lumina_Backend.Repository.User;
+// using Lumina_Backend.Repository.User;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -26,7 +26,7 @@ public class Program
         //  Cuando ya se vaya a hacer el despliegue local en Docker se elimina la env variable connectionString y se modifica el servicio nuevamente con el c�digo de abajo, y se habilita el string del appsettings.json
         //      opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaConnection")));
 
-        builder.Services.AddTransient<IUserRepository, UserRepository>();
+        //builder.Services.AddTransient<IUserRepository, UserRepository>();
         builder.Services.AddAuthorization();
         builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
