@@ -1,4 +1,4 @@
-﻿using Lumina_Backend.Data;
+﻿/* using Lumina_Backend.Data;
 using Lumina_Backend.ModelsDTO;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,3 +58,4 @@ namespace Lumina_Backend.Repository.User
         }
     }
 }
+*/

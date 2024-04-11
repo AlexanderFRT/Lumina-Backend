@@ -1,4 +1,4 @@
-﻿using Lumina_Backend.Models;
+﻿/* using Lumina_Backend.Models;
 using Lumina_Backend.ModelsDTO;
 
 namespace Lumina_Backend.Repository.User
@@ -11,3 +11,4 @@ namespace Lumina_Backend.Repository.User
         Task<Login> login(Login login);
     }
 }
+*/
