@@ -29,26 +29,30 @@ namespace Lumina_Backend.Data
             builder.Entity<Security>()
                 .ToTable("Securities");
 
-            // Define las foreign keys
+            // Define las relaciones
             builder.Entity<Account>()
                 .HasOne(a => a.User)
                 .WithMany(u => u.Accounts)
-                .HasForeignKey(a => a.UserID);
+                .HasForeignKey(a => a.UserID)
+                .IsRequired();
 
             builder.Entity<Transaction>()
                 .HasOne(t => t.Account)
                 .WithMany(a => a.Transactions)
-                .HasForeignKey(t => t.AccountID);
+                .HasForeignKey(t => t.AccountID)
+                .IsRequired();
 
             builder.Entity<Security>()
                 .HasOne(s => s.User)
                 .WithMany(u => u.Securities)
-                .HasForeignKey(s => s.UserId);
+                .HasForeignKey(s => s.UserId)
+                .IsRequired();
 
             builder.Entity<Log>()
                 .HasOne(l => l.User)
                 .WithMany(u => u.Logs)
-                .HasForeignKey(l => l.UserId);
+                .HasForeignKey(l => l.UserId)
+                .IsRequired();
 
             var demoUsers = new List<User>
             {
