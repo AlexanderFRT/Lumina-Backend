@@ -10,6 +10,11 @@ namespace Lumina_Backend.Data
 
         }
 
+        private string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -56,11 +61,11 @@ namespace Lumina_Backend.Data
 
             var demoUsers = new List<User>
             {
-            new User { Id = -1, UserName = "ajruiz2204", Password = "123456", Email = "ajruiz2204@example.com"},
-            new User { Id = -2, UserName = "4rnol", Password = "123456", Email = "4rnol@example.com"},
-            new User { Id = -3, UserName = "AlexanderFRT", Password = "123456", Email = "alexanderfrt@example.com"},
-            new User { Id = -4, UserName = "ezealeguzman", Password = "123456", Email = "ezealeguzman@example.com"},
-            new User { Id = -5, UserName = "giolucc", Password = "123456", Email = "giolucc@example.com"}
+                new User { Id = -1, UserName = "AlexanderFRT", Password = HashPassword("123456"), Email = "alexanderfrt@example.com"},
+                new User { Id = -2, UserName = "ajruiz2204", Password = HashPassword("123456"), Email = "ajruiz2204@example.com"},
+                new User { Id = -3, UserName = "4rnol", Password = HashPassword("123456"), Email = "4rnol@example.com"},
+                new User { Id = -4, UserName = "ezealeguzman", Password = HashPassword("123456"), Email = "ezealeguzman@example.com"},
+                new User { Id = -5, UserName = "giolucc", Password = HashPassword("123456"), Email = "giolucc@example.com"}
             };
             builder.Entity<User>().HasData(demoUsers);
          }
