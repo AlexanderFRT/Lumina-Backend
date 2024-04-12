@@ -15,10 +15,23 @@ public class RegistrationController : ControllerBase
         _context = context;
     }
 
-    // POST: api/Registration
+    // POST: api/Registration https://localhost:7024/api/Registration
+    // Endpoint para registrarse
     [HttpPost]
     public async Task<ActionResult<User>> PostUser([FromBody] RegistrationRequest request)
     {
+        // Chequea si el nombre de usuario está tomado
+        if (_context.Users.Any(u => u.UserName == request.UserName))
+        {
+            return BadRequest("El nombre de usuario ya está en uso.");
+        }
+
+        // Chequea si el email ya está registrado
+        if (_context.Users.Any(u => u.Email == request.Email))
+        {
+            return BadRequest("El correo electrónico ya está registrado.");
+        }
+
         // Construir el objeto de usuario a partir de los parámetros de la solicitud
         var user = new User
         {

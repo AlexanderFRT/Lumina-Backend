@@ -225,50 +225,50 @@ namespace Lumina_Backend.Migrations
                         new
                         {
                             Id = -1,
-                            DateAdded = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(41),
-                            DateUpdated = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(44),
-                            Email = "ajruiz2204@example.com",
-                            Password = "123456",
-                            Status = 0,
-                            UserName = "ajruiz2204"
-                        },
-                        new
-                        {
-                            Id = -2,
-                            DateAdded = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(48),
-                            DateUpdated = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(48),
-                            Email = "4rnol@example.com",
-                            Password = "123456",
-                            Status = 0,
-                            UserName = "4rnol"
-                        },
-                        new
-                        {
-                            Id = -3,
-                            DateAdded = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(50),
-                            DateUpdated = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(50),
+                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 352, DateTimeKind.Utc).AddTicks(492),
+                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 352, DateTimeKind.Utc).AddTicks(495),
                             Email = "alexanderfrt@example.com",
-                            Password = "123456",
+                            Password = "$2a$11$5datMrPoj.SdNZVvWBpnPe1mijibloWbKfXM1fpIEdWOszOoyZStC",
                             Status = 0,
                             UserName = "AlexanderFRT"
                         },
                         new
                         {
+                            Id = -2,
+                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 475, DateTimeKind.Utc).AddTicks(9501),
+                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 475, DateTimeKind.Utc).AddTicks(9505),
+                            Email = "ajruiz2204@example.com",
+                            Password = "$2a$11$h3pfQaysrqwtAwuz94aa5.OBv76Sn53P99hDJ8skvkRD52WyJWhRq",
+                            Status = 0,
+                            UserName = "ajruiz2204"
+                        },
+                        new
+                        {
+                            Id = -3,
+                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 603, DateTimeKind.Utc).AddTicks(2994),
+                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 603, DateTimeKind.Utc).AddTicks(2998),
+                            Email = "4rnol@example.com",
+                            Password = "$2a$11$uiaCiPG78qFkQDQjqfovGOpWx/h.ybQRE.1Ar8d9Ez397IbKG.v2W",
+                            Status = 0,
+                            UserName = "4rnol"
+                        },
+                        new
+                        {
                             Id = -4,
-                            DateAdded = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(51),
-                            DateUpdated = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(51),
+                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 738, DateTimeKind.Utc).AddTicks(5340),
+                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 738, DateTimeKind.Utc).AddTicks(5344),
                             Email = "ezealeguzman@example.com",
-                            Password = "123456",
+                            Password = "$2a$11$IH77RA3bOwzZ20lo8IjazuPQSOFDw0hQOMYat6EV2JG90AOHYPOaS",
                             Status = 0,
                             UserName = "ezealeguzman"
                         },
                         new
                         {
                             Id = -5,
-                            DateAdded = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(52),
-                            DateUpdated = new DateTime(2024, 4, 11, 17, 17, 2, 740, DateTimeKind.Utc).AddTicks(52),
+                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 864, DateTimeKind.Utc).AddTicks(5060),
+                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 864, DateTimeKind.Utc).AddTicks(5064),
                             Email = "giolucc@example.com",
-                            Password = "123456",
+                            Password = "$2a$11$B8OyvxS4f5.H2kkUMobS8esuM/zH9gHDsrnZlvqzb9KoGuwTSuq1i",
                             Status = 0,
                             UserName = "giolucc"
                         });
@@ -278,7 +278,9 @@ namespace Lumina_Backend.Migrations
                 {
                     b.HasOne("Lumina_Backend.Models.User", "User")
                         .WithMany("Accounts")
-                        .HasForeignKey("UserID");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -287,7 +289,9 @@ namespace Lumina_Backend.Migrations
                 {
                     b.HasOne("Lumina_Backend.Models.User", "User")
                         .WithMany("Logs")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -296,7 +300,9 @@ namespace Lumina_Backend.Migrations
                 {
                     b.HasOne("Lumina_Backend.Models.User", "User")
                         .WithMany("Securities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -305,7 +311,9 @@ namespace Lumina_Backend.Migrations
                 {
                     b.HasOne("Lumina_Backend.Models.Account", "Account")
                         .WithMany("Transactions")
-                        .HasForeignKey("AccountID");
+                        .HasForeignKey("AccountID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Account");
                 });

@@ -143,11 +143,11 @@ namespace Lumina_Backend.Migrations
                 columns: new[] { "Id", "Address", "DNI", "DateAdded", "DateOfBirth", "DateUpdated", "Email", "FullName", "Password", "ProfileImage", "SessionToken", "Status", "UserName" },
                 values: new object[,]
                 {
-                    { -5, null, null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5817), null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5817), "giolucc@example.com", null, "123456", null, null, 0, "giolucc" },
-                    { -4, null, null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5815), null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5816), "ezealeguzman@example.com", null, "123456", null, null, 0, "ezealeguzman" },
-                    { -3, null, null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5814), null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5814), "alexanderfrt@example.com", null, "123456", null, null, 0, "AlexanderFRT" },
-                    { -2, null, null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5813), null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5813), "4rnol@example.com", null, "123456", null, null, 0, "4rnol" },
-                    { -1, null, null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5808), null, new DateTime(2024, 4, 11, 16, 58, 46, 494, DateTimeKind.Utc).AddTicks(5810), "ajruiz2204@example.com", null, "123456", null, null, 0, "ajruiz2204" }
+                    { -5, null, null, new DateTime(2024, 4, 11, 20, 57, 52, 864, DateTimeKind.Utc).AddTicks(5060), null, new DateTime(2024, 4, 11, 20, 57, 52, 864, DateTimeKind.Utc).AddTicks(5064), "giolucc@example.com", null, "$2a$11$B8OyvxS4f5.H2kkUMobS8esuM/zH9gHDsrnZlvqzb9KoGuwTSuq1i", null, null, 0, "giolucc" },
+                    { -4, null, null, new DateTime(2024, 4, 11, 20, 57, 52, 738, DateTimeKind.Utc).AddTicks(5340), null, new DateTime(2024, 4, 11, 20, 57, 52, 738, DateTimeKind.Utc).AddTicks(5344), "ezealeguzman@example.com", null, "$2a$11$IH77RA3bOwzZ20lo8IjazuPQSOFDw0hQOMYat6EV2JG90AOHYPOaS", null, null, 0, "ezealeguzman" },
+                    { -3, null, null, new DateTime(2024, 4, 11, 20, 57, 52, 603, DateTimeKind.Utc).AddTicks(2994), null, new DateTime(2024, 4, 11, 20, 57, 52, 603, DateTimeKind.Utc).AddTicks(2998), "4rnol@example.com", null, "$2a$11$uiaCiPG78qFkQDQjqfovGOpWx/h.ybQRE.1Ar8d9Ez397IbKG.v2W", null, null, 0, "4rnol" },
+                    { -2, null, null, new DateTime(2024, 4, 11, 20, 57, 52, 475, DateTimeKind.Utc).AddTicks(9501), null, new DateTime(2024, 4, 11, 20, 57, 52, 475, DateTimeKind.Utc).AddTicks(9505), "ajruiz2204@example.com", null, "$2a$11$h3pfQaysrqwtAwuz94aa5.OBv76Sn53P99hDJ8skvkRD52WyJWhRq", null, null, 0, "ajruiz2204" },
+                    { -1, null, null, new DateTime(2024, 4, 11, 20, 57, 52, 352, DateTimeKind.Utc).AddTicks(492), null, new DateTime(2024, 4, 11, 20, 57, 52, 352, DateTimeKind.Utc).AddTicks(495), "alexanderfrt@example.com", null, "$2a$11$5datMrPoj.SdNZVvWBpnPe1mijibloWbKfXM1fpIEdWOszOoyZStC", null, null, 0, "AlexanderFRT" }
                 });
 
             migrationBuilder.CreateIndex(

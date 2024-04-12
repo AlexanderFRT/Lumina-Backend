@@ -1,4 +1,6 @@
-﻿namespace Lumina_Backend.ModelsDTO
+﻿/*
+namespace Lumina_Backend.ModelsDTO;
+
 {
     public class Login
     {
@@ -8,3 +10,4 @@
          
     }
 }
+*/
