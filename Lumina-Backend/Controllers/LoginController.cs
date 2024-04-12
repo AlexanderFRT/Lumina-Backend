@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Lumina_Backend.Data;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Lumina_Backend.Services;
 
 namespace Lumina_Backend.Controllers;
 
@@ -8,10 +13,12 @@ namespace Lumina_Backend.Controllers;
 public class LoginController : ControllerBase
 {
     private readonly ApiDbContext _context;
+    private readonly TokenManager _tokenManager;
 
-    public LoginController(ApiDbContext context)
+    public LoginController(ApiDbContext context, TokenManager tokenManager)
     {
         _context = context;
+        _tokenManager = tokenManager;
     }
 
     // POST: api/Login https://localhost:7024/api/Login
@@ -35,10 +42,15 @@ public class LoginController : ControllerBase
             return Unauthorized("Contraseña incorrecta.");
         }
 
-        // Inicio de sesión exitoso
-        // Se va a generar un token JWT aquí para autenticación también
-        // Por ahora se devuelve un mensaje de éxito
-        return Ok("Inicio de sesión exitoso.");
+        // Genera el token JWT
+        var token = _tokenManager.GenerateToken(user);
+
+        // Guarda el token generado para el usuario en el DB
+        user.SessionToken = token;
+        _context.SaveChanges();
+
+        // Regresa el token y un mensaje de "Inicio de sesión exitoso"
+        return Ok(new { Token = token, Message = "Inicio de sesión exitoso." });
     }
 
     // Representa una solicitud de inicio de sesión con credenciales de usuario
