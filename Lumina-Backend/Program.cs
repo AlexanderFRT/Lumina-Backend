@@ -23,7 +23,7 @@ public class Program
             .AddDbContext<ApiDbContext>(opt =>
                 opt.UseNpgsql(connectionString));
 
-        //  Cuando ya se vaya a hacer el despliegue local en Docker se elimina la env variable connectionString y se modifica el servicio nuevamente con el c�digo de abajo, y se habilita el string del appsettings.json
+        //  Cuando ya se vaya a hacer el despliegue local en Docker se elimina la env variable connectionString y se modifica el servicio nuevamente con el c�digo de abajo, y se usa el localhost string del appsettings.json
         //      opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaConnection")));
 
         //builder.Services.AddTransient<IUserRepository, UserRepository>();
