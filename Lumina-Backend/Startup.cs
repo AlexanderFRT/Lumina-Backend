@@ -52,8 +52,8 @@ public class Startup
         // Middleware de límite de tasa
         services.AddLogging(builder =>
         {
-            builder.AddConsole(); // Add console logger provider
-            builder.AddDebug();   // Add debug logger provider
+            builder.AddConsole();
+            builder.AddDebug();
         });
         services.Configure<RateLimitOptions>(_configuration.GetSection("RateLimit"));
         services.AddSingleton<IRateLimitCounter, MemoryCacheRateLimitCounter>();
@@ -70,7 +70,7 @@ public class Startup
             app.UseHsts(); // Enable HSTS (HTTP Strict Transport Security)
         }
 
-        // Redirect HTTP requests to HTTPS
+        // Redirecciona las requests HTTP a HTTPS
         app.UseHttpsRedirection();
 
         // Middleware de límite de tasa
@@ -82,7 +82,7 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
-        // Otras configuraciones de middleware
+        // Otras configuraciones generales de middleware
 
         app.UseEndpoints(endpoints =>
         {
