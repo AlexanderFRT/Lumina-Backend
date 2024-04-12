@@ -10,44 +10,53 @@ namespace Lumina_Backend;
 public class Startup
 {
     private readonly IConfiguration _configuration;
+    private readonly ILogger<Startup> _logger;
 
-    public Startup(IConfiguration configuration)
+    public Startup(IConfiguration configuration, ILogger<Startup> logger)
     {
         _configuration = configuration;
+        _logger = logger;
     }
 
     public void ConfigureServices(IServiceCollection services)
     {
         // Autenticación con JWT
-        services.AddAuthentication(options =>
+        try
         {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(options =>
-        {
-            options.RequireHttpsMetadata = true; // Require HTTPS metadata
+            var jwtSettings = _configuration.GetSection("JwtSettings");
+            var secretKey = jwtSettings["SecretKey"];
+            var issuer = jwtSettings["Issuer"];
+            var audience = jwtSettings["Audience"];
+            var tokenExpirationMinutes = Convert.ToInt32(jwtSettings["TokenExpirationMinutes"]);
 
-            // Recuperar la clave secreta JWT de la configuración
-            var secretKey = _configuration["JwtSettings:SecretKey"];
-
-            // Comprobar si la clave secreta no es nula ni está vacía
             if (string.IsNullOrEmpty(secretKey))
             {
-                // Lanzar una excepción si la clave secreta no está configurada
-                throw new InvalidOperationException("La clave secreta JWT no está configurada.");
+                throw new InvalidOperationException("La clave secreta de JWT no está configurada.");
             }
 
-            // Convertir la clave secreta a bytes
-            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
-            var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256Signature);
-
-            options.TokenValidationParameters = new TokenValidationParameters
+            services.AddAuthentication(options =>
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                IssuerSigningKey = signingKey,
-            };
-        });
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = issuer,
+                    ValidAudience = audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+                };
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Se produjo un error al configurar la autenticación JWT.");
+            throw; // Vuelva a lanzar la excepción para que la aplicación la maneje
+        }
 
         // Middleware de límite de tasa
         services.AddLogging(builder =>
@@ -67,7 +76,7 @@ public class Startup
         }
         else
         {
-            app.UseHsts(); // Enable HSTS (HTTP Strict Transport Security)
+            app.UseHsts(); // Habilita HSTS (HTTP Strict Transport Security)
         }
 
         // Redirecciona las requests HTTP a HTTPS
