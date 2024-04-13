@@ -20,6 +20,16 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowNetlifyClient", builder =>
+            {
+                builder.WithOrigins("https://loginnocountry.netlify.app")
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            });
+        });
+
         // Autenticación con JWT
         try
         {
@@ -66,6 +76,7 @@ public class Startup
         });
         services.Configure<RateLimitOptions>(_configuration.GetSection("RateLimit"));
         services.AddSingleton<IRateLimitCounter, MemoryCacheRateLimitCounter>();
+        services.AddSingleton<TokenManager>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -78,6 +89,9 @@ public class Startup
         {
             app.UseHsts(); // Habilita HSTS (HTTP Strict Transport Security)
         }
+
+        // Habilita el uso de Frontend y Backend de distintas fuentes
+        app.UseCors("AllowNetlifyClient");
 
         // Redirecciona las requests HTTP a HTTPS
         app.UseHttpsRedirection();

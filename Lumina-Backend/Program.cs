@@ -45,6 +45,7 @@ public class Program
         });
         builder.Services.Configure<RateLimitOptions>(builder.Configuration.GetSection("RateLimit"));
         builder.Services.AddSingleton<IRateLimitCounter, MemoryCacheRateLimitCounter>();
+        builder.Services.AddSingleton<TokenManager>();
 
         // Builder para el JWT
         builder.Services.AddAuthorization();
