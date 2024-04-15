@@ -23,7 +23,7 @@
 4. **Configura la imagen y el certificado HTTPS:**
    - Si eres usuario de Windows, abre la carpeta y haz doble click en el certificado_https_windows, se abrirá una terminal que te dirá que se copio el certificado + la palabra clave del certificado en los directorios correspondientes, puedes cerrar esta terminal pulsando cualquier tecla.
    
-   - Si eres usuario de Linux o macOS tienes que correr el Shell Script a través de una terminal dentro de la carpeta de DockerDeployment, primero utiliza: `chmod +x certificado_https_linux_macOS` para permitir su ejecución, y luego: `./certificado_https_linux_macOS` para ejecutarlo.
+   - Si eres usuario de Linux o macOS tienes que correr el Shell Script a través de una terminal dentro de la carpeta de LuminaDeployment, primero utiliza: `chmod +x certificado_https_linux_macOS` para permitir su ejecución, y luego: `./certificado_https_linux_macOS` para ejecutarlo.
    
    - Ahora abre una terminal o línea de comandos (cmd) en la carpeta del proyecto, asegurate de que la terminal este en la dirección correcta, si usas Windows debes estar en C:\Users\TuNombreDeUsuario\Documentos\LuminaDeployment>, de lo contrario usa el siguiente comando para navegar a la carpeta dentro de la terminal:
      ```bash
