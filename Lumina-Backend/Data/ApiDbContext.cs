@@ -61,11 +61,15 @@ namespace Lumina_Backend.Data
 
             var demoUsers = new List<User>
             {
-                new User { Id = -1, UserName = "AlexanderFRT", Password = HashPassword("123456"), Email = "alexanderfrt@example.com"},
-                new User { Id = -2, UserName = "ajruiz2204", Password = HashPassword("123456"), Email = "ajruiz2204@example.com"},
-                new User { Id = -3, UserName = "4rnol", Password = HashPassword("123456"), Email = "4rnol@example.com"},
-                new User { Id = -4, UserName = "ezealeguzman", Password = HashPassword("123456"), Email = "ezealeguzman@example.com"},
-                new User { Id = -5, UserName = "giolucc", Password = HashPassword("123456"), Email = "giolucc@example.com"}
+                new User { Id = -1, UserName = "ajruiz2204", Password = HashPassword("123456"), Email = "ajruiz2204@example.com", FullName = "Alejandro Ruíz"},
+                new User { Id = -2, UserName = "AlexanderFRT", Password = HashPassword("123456"), Email = "alexanderfrt@example.com", FullName = "Alexander Flores"},
+                new User { Id = -3, UserName = "4rnol", Password = HashPassword("123456"), Email = "4rnol@example.com", FullName = "Arnol Flores"},
+                new User { Id = -4, UserName = "ema_ramirez", Password = HashPassword("123456"), Email = "ema_ramirez@example.com", FullName = "Emanuel Ramirez"},
+                new User { Id = -5, UserName = "ezealeguzman", Password = HashPassword("123456"), Email = "ezealeguzman@example.com", FullName = "Ezequiel Guzman"},
+                new User { Id = -6, UserName = "facu597", Password = HashPassword("123456"), Email = "facu597@example.com", FullName = "Facundo Castro"},
+                new User { Id = -7, UserName = "giolucc", Password = HashPassword("123456"), Email = "giolucc@example.com", FullName = "Giovanni Lucchetta"},
+                new User { Id = -8, UserName = "karla6524", Password = HashPassword("123456"), Email = "karla6524@example.com", FullName = "Karla Chavez"},
+                new User { Id = -9, UserName = "mabel8750_", Password = HashPassword("123456"), Email = "mabel8750_@example.com", FullName = "Mabel Ceballos"}
             };
             builder.Entity<User>().HasData(demoUsers);
          }
