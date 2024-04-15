@@ -19,6 +19,7 @@
 **/node_modules
 **/npm-debug.log
 **/obj
+**/LuminaDeployment
 **/secrets.dev.yaml
 **/values.dev.yaml
 LICENSE
