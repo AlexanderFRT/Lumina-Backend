@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Lumina_Backend.Data;
 using Lumina_Backend.Models;
+using static Lumina_Backend.Models.BaseEntity;
 
 namespace Lumina_Backend.Controllers;
 
@@ -60,6 +61,7 @@ public class RegistrationController : ControllerBase
 
         // Encriptar la contraseña antes de almacenarla en la base de datos por motivos de seguridad
         user.Password = HashPassword(user.Password);
+        user.Status = EntityStatus.Unverified;
 
         // Agregando el usuario a la base de datos
         _context.Users.Add(user);
