@@ -66,7 +66,7 @@ public class AccountController : ControllerBase
         // Generar el número de cuenta aleatorio de longitud 8
         for (int i = 0; i < 8; i++)
         {
-            numeroCuenta += random.Next(0, 10).ToString();
+            numeroCuenta += random.Next(0, 8).ToString();
         }
 
         // Combinar el prefijo con el número de cuenta aleatorio
