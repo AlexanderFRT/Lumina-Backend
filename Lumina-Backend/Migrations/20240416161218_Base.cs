@@ -29,7 +29,7 @@ namespace Lumina_Backend.Migrations
                     Address = table.Column<string>(type: "text", nullable: true),
                     DNI = table.Column<string>(type: "text", nullable: true),
                     ProfileImage = table.Column<string>(type: "text", nullable: true),
-                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "varchar(24)", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -46,9 +46,9 @@ namespace Lumina_Backend.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     AccountNumber = table.Column<int>(type: "integer", nullable: false),
-                    Type = table.Column<int>(type: "integer", nullable: false),
+                    Type = table.Column<string>(type: "varchar(24)", nullable: false),
                     Balance = table.Column<decimal>(type: "numeric", nullable: false),
-                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "varchar(24)", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -70,10 +70,9 @@ namespace Lumina_Backend.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    Action = table.Column<int>(type: "integer", nullable: false),
-                    Status = table.Column<int>(type: "integer", nullable: false),
-                    DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Action = table.Column<string>(type: "varchar(24)", nullable: false),
+                    Status = table.Column<string>(type: "varchar(24)", nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,7 +94,7 @@ namespace Lumina_Backend.Migrations
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     SecurityQuestion = table.Column<string>(type: "text", nullable: false),
                     SecurityAnswer = table.Column<string>(type: "text", nullable: false),
-                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "varchar(24)", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -117,10 +116,10 @@ namespace Lumina_Backend.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     AccountNumber = table.Column<int>(type: "integer", nullable: false),
-                    Type = table.Column<int>(type: "integer", nullable: false),
+                    Type = table.Column<string>(type: "varchar(24)", nullable: false),
                     Amount = table.Column<decimal>(type: "numeric", nullable: false),
                     TransactionDescription = table.Column<string>(type: "text", nullable: true),
-                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "varchar(24)", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -140,15 +139,15 @@ namespace Lumina_Backend.Migrations
                 columns: new[] { "Id", "Address", "DNI", "DateAdded", "DateOfBirth", "DateUpdated", "Email", "FullName", "Password", "ProfileImage", "SessionToken", "Status", "UserName" },
                 values: new object[,]
                 {
-                    { -9, null, null, new DateTime(2024, 4, 16, 9, 31, 49, 100, DateTimeKind.Utc).AddTicks(245), null, new DateTime(2024, 4, 16, 9, 31, 49, 100, DateTimeKind.Utc).AddTicks(250), "mabel8750_@example.com", "Mabel Ceballos", "$2a$11$0.9MoZTHNFENbwkQSvUKEu8pYhiEjlskgOwRyX1p0icPGB/qA6ZsO", null, null, 0, "mabel8750_" },
-                    { -8, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 981, DateTimeKind.Utc).AddTicks(4724), null, new DateTime(2024, 4, 16, 9, 31, 48, 981, DateTimeKind.Utc).AddTicks(4728), "karla6524@example.com", "Karla Chavez", "$2a$11$m9Xwd4.i75APLKWj7eYfh.4nT2noIQ.v5RUH62eyrjoT/qFa81QZa", null, null, 0, "karla6524" },
-                    { -7, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 861, DateTimeKind.Utc).AddTicks(9994), null, new DateTime(2024, 4, 16, 9, 31, 48, 862, DateTimeKind.Utc).AddTicks(31), "giolucc@example.com", "Giovanni Lucchetta", "$2a$11$ZXH5ERbRJ8g9EuzePTc5u../9it.Uk2Dymm3HdtZKujnL3Em.SNTK", null, null, 0, "giolucc" },
-                    { -6, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 741, DateTimeKind.Utc).AddTicks(3982), null, new DateTime(2024, 4, 16, 9, 31, 48, 741, DateTimeKind.Utc).AddTicks(3988), "facu597@example.com", "Facundo Castro", "$2a$11$SyZnLRF2HIwXX7gbzfChbes3w3M4id5bL1AQUf.TFHTEOacPuWMnW", null, null, 0, "facu597" },
-                    { -5, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 622, DateTimeKind.Utc).AddTicks(6799), null, new DateTime(2024, 4, 16, 9, 31, 48, 622, DateTimeKind.Utc).AddTicks(6804), "ezealeguzman@example.com", "Ezequiel Guzman", "$2a$11$V4bLjiCzzhpShjgWMBfji.a87BdvrSXSWvxNnTdGRZeVNn0iR187a", null, null, 0, "ezealeguzman" },
-                    { -4, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 501, DateTimeKind.Utc).AddTicks(6184), null, new DateTime(2024, 4, 16, 9, 31, 48, 501, DateTimeKind.Utc).AddTicks(6188), "ema_ramirez@example.com", "Emanuel Ramirez", "$2a$11$fJpIxRGPBg004nFlJ6VeU.Z5GTzCrsbc7hlKponpEjoE9e9OQtAj2", null, null, 0, "ema_ramirez" },
-                    { -3, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 375, DateTimeKind.Utc).AddTicks(7530), null, new DateTime(2024, 4, 16, 9, 31, 48, 375, DateTimeKind.Utc).AddTicks(7534), "4rnol@example.com", "Arnol Flores", "$2a$11$T0hvx6cDyDj/97QHq7ZPheWKEy22VFA1EclxcMQqXICsehWUulPzy", null, null, 0, "4rnol" },
-                    { -2, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 251, DateTimeKind.Utc).AddTicks(1892), null, new DateTime(2024, 4, 16, 9, 31, 48, 251, DateTimeKind.Utc).AddTicks(1898), "alexanderfrt@example.com", "Alexander Flores", "$2a$11$WqvaMnKjbYlgxyiIeG0NM.jLblU4er.zgJ2Ju74tn2XZmxd4o0rCi", null, null, 0, "AlexanderFRT" },
-                    { -1, null, null, new DateTime(2024, 4, 16, 9, 31, 48, 132, DateTimeKind.Utc).AddTicks(1033), null, new DateTime(2024, 4, 16, 9, 31, 48, 132, DateTimeKind.Utc).AddTicks(1037), "ajruiz2204@example.com", "Alejandro Ruíz", "$2a$11$IZ8Ml9S/F8.j4u5qgNfPJ.QXyglpTtUkmOVAfQipPWJ88rtcGFzOK", null, null, 0, "ajruiz2204" }
+                    { -9, null, null, new DateTime(2024, 4, 16, 16, 12, 18, 202, DateTimeKind.Utc).AddTicks(3793), null, new DateTime(2024, 4, 16, 16, 12, 18, 202, DateTimeKind.Utc).AddTicks(3797), "mabel8750_@example.com", "Mabel Ceballos", "$2a$11$b9Yj0oFU037ZnFzkgzdNHe9WzMMTEcdesj0NnUMJWrjVWzy1cKF8W", null, null, "Unverified", "mabel8750_" },
+                    { -8, null, null, new DateTime(2024, 4, 16, 16, 12, 18, 83, DateTimeKind.Utc).AddTicks(3648), null, new DateTime(2024, 4, 16, 16, 12, 18, 83, DateTimeKind.Utc).AddTicks(3651), "karla6524@example.com", "Karla Chavez", "$2a$11$4AXjRfgLoNQZ2cYimg/aRu/NcCbJwMoN51w5LDr9On/L40gw.NFFK", null, null, "Unverified", "karla6524" },
+                    { -7, null, null, new DateTime(2024, 4, 16, 16, 12, 17, 961, DateTimeKind.Utc).AddTicks(2858), null, new DateTime(2024, 4, 16, 16, 12, 17, 961, DateTimeKind.Utc).AddTicks(2862), "giolucc@example.com", "Giovanni Lucchetta", "$2a$11$d6WywWN3LwUjybHsdkTnnOA/VbCskFoEz3jHvCoYZnN5QyhvtyuP2", null, null, "Unverified", "giolucc" },
+                    { -6, null, null, new DateTime(2024, 4, 16, 16, 12, 17, 843, DateTimeKind.Utc).AddTicks(1194), null, new DateTime(2024, 4, 16, 16, 12, 17, 843, DateTimeKind.Utc).AddTicks(1199), "facu597@example.com", "Facundo Castro", "$2a$11$b4SKB9OtwM3mEogZ3HFeEOiNciNFgwHsE5Y.DOEdGva2OZa9CFopS", null, null, "Unverified", "facu597" },
+                    { -5, null, null, new DateTime(2024, 4, 16, 16, 12, 17, 720, DateTimeKind.Utc).AddTicks(8451), null, new DateTime(2024, 4, 16, 16, 12, 17, 720, DateTimeKind.Utc).AddTicks(8456), "ezealeguzman@example.com", "Ezequiel Guzman", "$2a$11$3yS42NIMEOxCajtvP9DM/.Cg.otrj/uCnqE/Y2ZitBS2pa6fHzaRa", null, null, "Unverified", "ezealeguzman" },
+                    { -4, null, null, new DateTime(2024, 4, 16, 16, 12, 17, 601, DateTimeKind.Utc).AddTicks(3024), null, new DateTime(2024, 4, 16, 16, 12, 17, 601, DateTimeKind.Utc).AddTicks(3028), "ema_ramirez@example.com", "Emanuel Ramirez", "$2a$11$DRxNIeJzHlvwlciYDRAXo.NqU4f5PcqknodrvsTBV3.GTIedZU35i", null, null, "Unverified", "ema_ramirez" },
+                    { -3, null, null, new DateTime(2024, 4, 16, 16, 12, 17, 478, DateTimeKind.Utc).AddTicks(5811), null, new DateTime(2024, 4, 16, 16, 12, 17, 478, DateTimeKind.Utc).AddTicks(5815), "4rnol@example.com", "Arnol Flores", "$2a$11$m7/EMJzEZCIY4YYO6jM4SevLJ0/wGE9YYQl2V09Q2afh/5QnTxFL2", null, null, "Unverified", "4rnol" },
+                    { -2, null, null, new DateTime(2024, 4, 16, 16, 12, 17, 356, DateTimeKind.Utc).AddTicks(7186), null, new DateTime(2024, 4, 16, 16, 12, 17, 356, DateTimeKind.Utc).AddTicks(7191), "alexanderfrt@example.com", "Alexander Flores", "$2a$11$8qWWfAnwnaEzP7cRjAHhNOo.w18W1D8uxcZRQzv63RpL9XI577ZrG", null, null, "Unverified", "AlexanderFRT" },
+                    { -1, null, null, new DateTime(2024, 4, 16, 16, 12, 17, 238, DateTimeKind.Utc).AddTicks(9687), null, new DateTime(2024, 4, 16, 16, 12, 17, 238, DateTimeKind.Utc).AddTicks(9690), "ajruiz2204@example.com", "Alejandro Ruíz", "$2a$11$EwmJZ3iZZgJkhKfM/wLc.e0G3EXjRUV0MzNRyDHVSCoV1chrDACpm", null, null, "Unverified", "ajruiz2204" }
                 });
 
             migrationBuilder.CreateIndex(
