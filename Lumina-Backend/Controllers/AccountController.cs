@@ -1,6 +1,7 @@
 ﻿using Lumina_Backend.Data;
 using Lumina_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using static Lumina_Backend.Models.Account;
 
 
 namespace Lumina_Backend.Controllers;
