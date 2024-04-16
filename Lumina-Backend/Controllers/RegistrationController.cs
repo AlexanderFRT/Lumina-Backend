@@ -2,8 +2,6 @@
 using Lumina_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-using static Lumina_Backend.Models.BaseEntity;
 
 namespace Lumina_Backend.Controllers;
 

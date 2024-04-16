@@ -1,10 +1,8 @@
 ﻿using Lumina_Backend.Data;
 using Lumina_Backend.Models;
-using Lumina_Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using static Lumina_Backend.Models.Account;
 
 
 namespace Lumina_Backend.Controllers;
