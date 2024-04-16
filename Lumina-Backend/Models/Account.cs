@@ -4,7 +4,7 @@ public class Account : BaseEntity
 {
     public virtual User User { get; set; }
 
-    public string AccountNumber { get; set; }
+    public int AccountNumber { get; set; }
     public AccountType Type { get; set; }
     public decimal Balance { get; set; }
 
@@ -12,7 +12,7 @@ public class Account : BaseEntity
 
     public enum AccountType
     {
-        Checking,
-        Savings
+        Checking = 0,
+        Savings = 1
     }
 }

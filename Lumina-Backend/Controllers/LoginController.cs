@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Lumina_Backend.Data;
+﻿using Lumina_Backend.Data;
 using Lumina_Backend.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lumina_Backend.Controllers;
 
@@ -22,20 +22,22 @@ public class LoginController : ControllerBase
     [HttpPost]
     public IActionResult PostLogin([FromBody] LoginRequest request)
     {
-        if (request == null || string.IsNullOrEmpty(request.UserName) || string.IsNullOrEmpty(request.Password))
+        if (!ModelState.IsValid)
         {
-            return BadRequest("Se requieren nombre de usuario y contraseña.");
+            return BadRequest(ModelState);
         }
 
         var user = _context.Users.FirstOrDefault(u => u.UserName == request.UserName);
         if (user == null)
         {
-            return NotFound("Nombre de usuario no encontrado.");
+            ModelState.AddModelError("UserName", "Nombre de usuario no encontrado.");
+            return NotFound(ModelState);
         }
 
         if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
         {
-            return Unauthorized("Contraseña incorrecta.");
+            ModelState.AddModelError("Password", "Contraseña incorrecta.");
+            return Unauthorized(ModelState);
         }
 
         // Genera el token JWT
