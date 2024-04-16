@@ -4,6 +4,6 @@ public class Security : BaseEntity
 {
     public virtual User User { get; set; }
 
-    public string SecurityQuestions { get; set; }
-    public string SecurityAnswers { get; set; }
+    public string SecurityQuestion { get; set; }
+    public string SecurityAnswer { get; set; }
 }

@@ -2,17 +2,17 @@
 
 public class Transaction : BaseEntity
 {
-    public int AccountNumber { get; set; }
+    public string AccountNumber { get; set; }
     public virtual Account Account { get; set; }
 
     public TransactionType Type { get; set; }
     public decimal Amount { get; set; }
-    public DateTime DateTime { get; set; }
-    public string TransactionDescription { get; set; }
-}
-public enum TransactionType
-{
-    Deposit,
-    Withdrawal,
-    Transfer
+    public string? TransactionDescription { get; set; }
+
+    public enum TransactionType
+    {
+        Deposit,
+        Withdrawal,
+        Transfer
+    }
 }
