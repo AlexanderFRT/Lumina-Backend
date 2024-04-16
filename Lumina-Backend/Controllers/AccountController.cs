@@ -63,10 +63,10 @@ public class AccountController : ControllerBase
         // Generar el prefijo del número de cuenta (por ejemplo, el código del banco)
         string prefijo = "1234"; // Ejemplo de prefijo
 
-        // Generar el número de cuenta aleatorio de longitud 8
+        // Generar el número de cuenta aleatorio de longitud 
         for (int i = 0; i < 8; i++)
         {
-            numeroCuenta += random.Next(0, 8).ToString();
+            numeroCuenta += random.Next(0, 10).ToString();
         }
 
         // Combinar el prefijo con el número de cuenta aleatorio
