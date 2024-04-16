@@ -9,10 +9,10 @@ public class Account : BaseEntity
     public decimal Balance { get; set; }
 
     public virtual ICollection<Transaction> Transactions { get; set; }
-}
 
-public enum AccountType
-{
-    Checking,
-    Savings
+    public enum AccountType
+    {
+        Checking,
+        Savings
+    }
 }

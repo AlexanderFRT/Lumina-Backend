@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Lumina_Backend.Data;
+﻿using Lumina_Backend.Data;
 using Lumina_Backend.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using static Lumina_Backend.Models.BaseEntity;
 
 namespace Lumina_Backend.Controllers;
@@ -19,70 +20,42 @@ public class RegistrationController : ControllerBase
     // POST: api/Registration https://localhost:7024/api/Registration
     // Endpoint para registrarse
     [HttpPost]
-    public async Task<ActionResult<User>> PostUser([FromBody] RegistrationRequest request)
+    public async Task<IActionResult> PostUser(RegistrationRequest request)
     {
-        // Chequea si el nombre de usuario está tomado
-        if (_context.Users.Any(u => u.UserName == request.UserName))
+        if (!ModelState.IsValid)
         {
-            return BadRequest("El nombre de usuario ya está en uso.");
+            return BadRequest(ModelState);
+        }
+
+        // Chequea si el nombre de usuario está tomado
+        if (await _context.Users.AnyAsync(u => u.UserName == request.UserName))
+        {
+            ModelState.AddModelError("UserName", "El nombre de usuario ya está en uso.");
+            return BadRequest(ModelState);
         }
 
         // Chequea si el email ya está registrado
-        if (_context.Users.Any(u => u.Email == request.Email))
+        if (await _context.Users.AnyAsync(u => u.Email == request.Email))
         {
-            return BadRequest("El correo electrónico ya está registrado.");
-        }
-
-        // Construir el objeto de usuario a partir de los parámetros de la solicitud
-        var user = new User
-        {
-            UserName = request.UserName,
-            Password = request.Password,
-            Email = request.Email
-        };
-
-        // Validación para los datos del usuario
-        if (string.IsNullOrEmpty(user.UserName) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Email))
-        {
-            return BadRequest("Se requieren nombre de usuario, contraseña y correo electrónico.");
-        }
-        if (!IsValidEmail(user.Email))
-        {
-            return BadRequest("Formato de correo electrónico inválido.");
-        }
-        if (user.UserName.Length < 6 || user.UserName.Length > 16)
-        {
-            return BadRequest("El nombre de usuario debe tener entre 6 y 16 caracteres.");
-        }
-        if (user.Password.Length < 8 || user.Password.Length > 16)
-        {
-            return BadRequest("La contraseña debe tener entre 8 y 16 caracteres.");
+            ModelState.AddModelError("Email", "El correo electrónico ya está registrado.");
+            return BadRequest(ModelState);
         }
 
         // Encriptar la contraseña antes de almacenarla en la base de datos por motivos de seguridad
-        user.Password = HashPassword(user.Password);
-        user.Status = EntityStatus.Unverified;
+        string hashedPassword = HashPassword(request.Password);
 
-        // Agregando el usuario a la base de datos
-        _context.Users.Add(user);
+        // Creación del usuario agregando la información directamente al contexto
+        _context.Users.Add(new User
+        {
+            UserName = request.UserName,
+            Password = hashedPassword,
+            Email = request.Email,
+            Status = EntityStatus.Unverified
+        });
         await _context.SaveChangesAsync();
 
         // Devuelve una respuesta 201 Created
         return StatusCode(201);
-    }
-
-    // Método auxiliar para validar el formato de correo electrónico
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
-        }
-        catch
-        {
-            return false;
-        }
     }
 
     // Método para encriptar la contraseña usando BCrypt
