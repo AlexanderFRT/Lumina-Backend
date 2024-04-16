@@ -20,7 +20,7 @@ public class RegistrationController : ControllerBase
     // POST: api/Registration https://localhost:7024/api/Registration
     // Endpoint para registrarse
     [HttpPost]
-    public async Task<IActionResult> PostUser(RegistrationRequest request)
+    public async Task<IActionResult> PostUser([FromBody] RegistrationRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -41,6 +41,24 @@ public class RegistrationController : ControllerBase
             return BadRequest(ModelState);
         }
 
+        // Validación para los datos del usuario
+        if (string.IsNullOrEmpty(request.UserName) || string.IsNullOrEmpty(request.Password) || string.IsNullOrEmpty(request.Email))
+        {
+            return BadRequest("Se requieren nombre de usuario, contraseña y correo electrónico.");
+        }
+        if (request.UserName.Length < 6 || request.UserName.Length > 16)
+        {
+            return BadRequest("El nombre de usuario debe tener entre 6 y 16 caracteres.");
+        }
+        if (request.Password.Length < 8 || request.Password.Length > 16)
+        {
+            return BadRequest("La contraseña debe tener entre 8 y 16 caracteres.");
+        }
+        if (!IsValidEmail(request.Email))
+        {
+            return BadRequest("Formato de correo electrónico inválido.");
+        }
+
         // Encriptar la contraseña antes de almacenarla en la base de datos por motivos de seguridad
         string hashedPassword = HashPassword(request.Password);
 
@@ -56,6 +74,20 @@ public class RegistrationController : ControllerBase
 
         // Devuelve una respuesta 201 Created
         return StatusCode(201);
+    }
+
+    // Método auxiliar para validar el formato de correo electrónico
+    private bool IsValidEmail(string email)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     // Método para encriptar la contraseña usando BCrypt

@@ -22,20 +22,20 @@ public class BaseEntity
 
     public enum EntityStatus
     {
-        Unverified,
-        Verified,
-        Active,
-        Inactive,
-        Frozen,
-        Closed,
-        Pending,
-        Completed,
-        Failed,
-        Reversed,
-        PendingReview,
-        Approved,
-        Rejected,
-        Flagged,
-        Ok
+        Unverified = 0,
+        Verified = 1,
+        Active = 2,
+        Inactive = 3,
+        Frozen = 4,
+        Closed = 5,
+        Pending = 6,
+        Completed = 7,
+        Failed = 8,
+        Reversed = 9,
+        PendingReview = 10,
+        Approved = 11,
+        Rejected = 12,
+        Flagged = 13,
+        Ok = 14
     }
 }

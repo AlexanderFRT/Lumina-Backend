@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lumina_Backend.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240411205753_Base")]
+    [Migration("20240416093149_Base")]
     partial class Base
     {
         /// <inheritdoc />
@@ -51,12 +51,12 @@ namespace Lumina_Backend.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Accounts", (string)null);
                 });
@@ -78,15 +78,8 @@ namespace Lumina_Backend.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("IPAddress")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("Status")
                         .HasColumnType("integer");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -112,11 +105,11 @@ namespace Lumina_Backend.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("SecurityAnswers")
+                    b.Property<string>("SecurityAnswer")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("SecurityQuestions")
+                    b.Property<string>("SecurityQuestion")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -141,16 +134,13 @@ namespace Lumina_Backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountID")
+                    b.Property<int>("AccountNumber")
                         .HasColumnType("integer");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("numeric");
 
                     b.Property<DateTime>("DateAdded")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateUpdated")
@@ -160,7 +150,6 @@ namespace Lumina_Backend.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("TransactionDescription")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Type")
@@ -168,7 +157,7 @@ namespace Lumina_Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountID");
+                    b.HasIndex("AccountNumber");
 
                     b.ToTable("Transactions", (string)null);
                 });
@@ -228,52 +217,101 @@ namespace Lumina_Backend.Migrations
                         new
                         {
                             Id = -1,
-                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 352, DateTimeKind.Utc).AddTicks(492),
-                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 352, DateTimeKind.Utc).AddTicks(495),
-                            Email = "alexanderfrt@example.com",
-                            Password = "$2a$11$5datMrPoj.SdNZVvWBpnPe1mijibloWbKfXM1fpIEdWOszOoyZStC",
-                            Status = 0,
-                            UserName = "AlexanderFRT"
-                        },
-                        new
-                        {
-                            Id = -2,
-                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 475, DateTimeKind.Utc).AddTicks(9501),
-                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 475, DateTimeKind.Utc).AddTicks(9505),
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 132, DateTimeKind.Utc).AddTicks(1033),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 132, DateTimeKind.Utc).AddTicks(1037),
                             Email = "ajruiz2204@example.com",
-                            Password = "$2a$11$h3pfQaysrqwtAwuz94aa5.OBv76Sn53P99hDJ8skvkRD52WyJWhRq",
+                            FullName = "Alejandro Ruíz",
+                            Password = "$2a$11$IZ8Ml9S/F8.j4u5qgNfPJ.QXyglpTtUkmOVAfQipPWJ88rtcGFzOK",
                             Status = 0,
                             UserName = "ajruiz2204"
                         },
                         new
                         {
+                            Id = -2,
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 251, DateTimeKind.Utc).AddTicks(1892),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 251, DateTimeKind.Utc).AddTicks(1898),
+                            Email = "alexanderfrt@example.com",
+                            FullName = "Alexander Flores",
+                            Password = "$2a$11$WqvaMnKjbYlgxyiIeG0NM.jLblU4er.zgJ2Ju74tn2XZmxd4o0rCi",
+                            Status = 0,
+                            UserName = "AlexanderFRT"
+                        },
+                        new
+                        {
                             Id = -3,
-                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 603, DateTimeKind.Utc).AddTicks(2994),
-                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 603, DateTimeKind.Utc).AddTicks(2998),
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 375, DateTimeKind.Utc).AddTicks(7530),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 375, DateTimeKind.Utc).AddTicks(7534),
                             Email = "4rnol@example.com",
-                            Password = "$2a$11$uiaCiPG78qFkQDQjqfovGOpWx/h.ybQRE.1Ar8d9Ez397IbKG.v2W",
+                            FullName = "Arnol Flores",
+                            Password = "$2a$11$T0hvx6cDyDj/97QHq7ZPheWKEy22VFA1EclxcMQqXICsehWUulPzy",
                             Status = 0,
                             UserName = "4rnol"
                         },
                         new
                         {
                             Id = -4,
-                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 738, DateTimeKind.Utc).AddTicks(5340),
-                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 738, DateTimeKind.Utc).AddTicks(5344),
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 501, DateTimeKind.Utc).AddTicks(6184),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 501, DateTimeKind.Utc).AddTicks(6188),
+                            Email = "ema_ramirez@example.com",
+                            FullName = "Emanuel Ramirez",
+                            Password = "$2a$11$fJpIxRGPBg004nFlJ6VeU.Z5GTzCrsbc7hlKponpEjoE9e9OQtAj2",
+                            Status = 0,
+                            UserName = "ema_ramirez"
+                        },
+                        new
+                        {
+                            Id = -5,
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 622, DateTimeKind.Utc).AddTicks(6799),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 622, DateTimeKind.Utc).AddTicks(6804),
                             Email = "ezealeguzman@example.com",
-                            Password = "$2a$11$IH77RA3bOwzZ20lo8IjazuPQSOFDw0hQOMYat6EV2JG90AOHYPOaS",
+                            FullName = "Ezequiel Guzman",
+                            Password = "$2a$11$V4bLjiCzzhpShjgWMBfji.a87BdvrSXSWvxNnTdGRZeVNn0iR187a",
                             Status = 0,
                             UserName = "ezealeguzman"
                         },
                         new
                         {
-                            Id = -5,
-                            DateAdded = new DateTime(2024, 4, 11, 20, 57, 52, 864, DateTimeKind.Utc).AddTicks(5060),
-                            DateUpdated = new DateTime(2024, 4, 11, 20, 57, 52, 864, DateTimeKind.Utc).AddTicks(5064),
+                            Id = -6,
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 741, DateTimeKind.Utc).AddTicks(3982),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 741, DateTimeKind.Utc).AddTicks(3988),
+                            Email = "facu597@example.com",
+                            FullName = "Facundo Castro",
+                            Password = "$2a$11$SyZnLRF2HIwXX7gbzfChbes3w3M4id5bL1AQUf.TFHTEOacPuWMnW",
+                            Status = 0,
+                            UserName = "facu597"
+                        },
+                        new
+                        {
+                            Id = -7,
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 861, DateTimeKind.Utc).AddTicks(9994),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 862, DateTimeKind.Utc).AddTicks(31),
                             Email = "giolucc@example.com",
-                            Password = "$2a$11$B8OyvxS4f5.H2kkUMobS8esuM/zH9gHDsrnZlvqzb9KoGuwTSuq1i",
+                            FullName = "Giovanni Lucchetta",
+                            Password = "$2a$11$ZXH5ERbRJ8g9EuzePTc5u../9it.Uk2Dymm3HdtZKujnL3Em.SNTK",
                             Status = 0,
                             UserName = "giolucc"
+                        },
+                        new
+                        {
+                            Id = -8,
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 48, 981, DateTimeKind.Utc).AddTicks(4724),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 48, 981, DateTimeKind.Utc).AddTicks(4728),
+                            Email = "karla6524@example.com",
+                            FullName = "Karla Chavez",
+                            Password = "$2a$11$m9Xwd4.i75APLKWj7eYfh.4nT2noIQ.v5RUH62eyrjoT/qFa81QZa",
+                            Status = 0,
+                            UserName = "karla6524"
+                        },
+                        new
+                        {
+                            Id = -9,
+                            DateAdded = new DateTime(2024, 4, 16, 9, 31, 49, 100, DateTimeKind.Utc).AddTicks(245),
+                            DateUpdated = new DateTime(2024, 4, 16, 9, 31, 49, 100, DateTimeKind.Utc).AddTicks(250),
+                            Email = "mabel8750_@example.com",
+                            FullName = "Mabel Ceballos",
+                            Password = "$2a$11$0.9MoZTHNFENbwkQSvUKEu8pYhiEjlskgOwRyX1p0icPGB/qA6ZsO",
+                            Status = 0,
+                            UserName = "mabel8750_"
                         });
                 });
 
@@ -281,7 +319,7 @@ namespace Lumina_Backend.Migrations
                 {
                     b.HasOne("Lumina_Backend.Models.User", "User")
                         .WithMany("Accounts")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -314,7 +352,7 @@ namespace Lumina_Backend.Migrations
                 {
                     b.HasOne("Lumina_Backend.Models.Account", "Account")
                         .WithMany("Transactions")
-                        .HasForeignKey("AccountID")
+                        .HasForeignKey("AccountNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
