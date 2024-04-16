@@ -38,25 +38,22 @@ namespace Lumina_Backend.Data
             builder.Entity<Account>()
                 .HasOne(a => a.User)
                 .WithMany(u => u.Accounts)
-                .HasForeignKey(a => a.UserID)
                 .IsRequired();
 
             builder.Entity<Transaction>()
                 .HasOne(t => t.Account)
                 .WithMany(a => a.Transactions)
-                .HasForeignKey(t => t.AccountID)
+                .HasForeignKey(t => t.AccountNumber)
                 .IsRequired();
 
             builder.Entity<Security>()
                 .HasOne(s => s.User)
                 .WithMany(u => u.Securities)
-                .HasForeignKey(s => s.UserId)
                 .IsRequired();
 
             builder.Entity<Log>()
                 .HasOne(l => l.User)
                 .WithMany(u => u.Logs)
-                .HasForeignKey(l => l.UserId)
                 .IsRequired();
 
             var demoUsers = new List<User>
