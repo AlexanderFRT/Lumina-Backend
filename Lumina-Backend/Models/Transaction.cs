@@ -2,7 +2,7 @@
 
 public class Transaction : BaseEntity
 {
-    public int AccountNumber { get; set; }
+    public string AccountNumber { get; set; }
     public virtual Account Account { get; set; }
 
     public TransactionType Type { get; set; }
