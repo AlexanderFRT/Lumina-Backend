@@ -40,7 +40,7 @@
   
 4. **Accede a la funcionalidad completa del website:**
    - Una vez que el contenedor esté en ejecución, abre tu navegador web favorito.
-   - Ingresa a la URL del website: https://loginnocountry.netlify.app
+   - Ingresa a la URL del website: [Lumina Bank](https://luminabank.netlify.app)
 
 5. **Detén el contenedor cuando hayas terminado:**
    - Cuando ya no necesites utilizar el backend, puedes detener el contenedor.
