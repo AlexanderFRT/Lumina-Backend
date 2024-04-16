@@ -2,7 +2,6 @@
 
 public class Log : BaseEntity
 {
-    public int UserId { get; set; }
     public virtual User User { get; set; }
 
     public ActionType Action { get; set; }
