@@ -1,5 +1,6 @@
 ﻿using Lumina_Backend.Data;
 using Lumina_Backend.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -76,7 +77,7 @@ public class RegistrationController : ControllerBase
     }
 
     // Método auxiliar para validar el formato de correo electrónico
-    private bool IsValidEmail(string email)
+    private static bool IsValidEmail(string email)
     {
         try
         {

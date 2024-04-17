@@ -21,20 +21,29 @@ public class Program
         Console.WriteLine(key); */
 
         var builder = WebApplication.CreateBuilder(args);
-        var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
-     
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("EnableNetlify", builder =>
+            {
+                builder.WithOrigins("https://luminabank.netlify.app")
+                       .AllowAnyHeader()
+                       .AllowAnyMethod()
+                       .AllowCredentials();
+            });
+        });
+
+        var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
         builder.Services.AddEntityFrameworkNpgsql()
-            .AddDbContext<ApiDbContext>(opt =>
-                opt.UseNpgsql(connectionString));
+        .AddDbContext<ApiDbContext>(opt =>
+        opt.UseNpgsql(connectionString));
 
         //  Cuando ya se vaya a hacer el despliegue local en Docker de la versión final del DB se elimina la env variable connectionString y se modifica el servicio nuevamente con el codigo de abajo, para usar el localhost string del appsettings.json
         //      opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaConnection")));
 
-        //Builder para el RateLimit Middleware
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
         builder.Services.AddLogging(builder =>
         {
             builder.AddConsole();
@@ -42,27 +51,23 @@ public class Program
         });
         builder.Services.Configure<RateLimitOptions>(builder.Configuration.GetSection("RateLimit"));
         builder.Services.AddSingleton<IRateLimitCounter, MemoryCacheRateLimitCounter>();
-        builder.Services.AddSingleton<TokenManager>();
-
-        // Builder para el JWT
-        builder.Services.AddAuthorization();
+        builder.Services.AddCors();
         builder.Services.AddAuthentication("Bearer").AddJwtBearer();
-
-        //builder.Services.AddTransient<IUserRepository, UserRepository>();
-
+        builder.Services.AddSingleton<TokenManager>();
+        builder.Services.AddAuthorization();
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
         app.UseHttpsRedirection();
-        app.UseMiddleware<RateLimitMiddleware>();
         app.UseRouting();
-        app.UseAuthorization(); 
+        app.UseMiddleware<RateLimitMiddleware>();
+        app.UseCors("EnableNetlify");
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.MapControllers();
         app.Run();
     }
