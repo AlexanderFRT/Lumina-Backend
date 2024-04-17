@@ -22,9 +22,9 @@ public class Startup
     {
         services.AddCors(options =>
         {
-            options.AddPolicy("AllowNetlifyClient", builder =>
+            options.AddPolicy("AllowAll", builder =>
             {
-                builder.WithOrigins("https://loginnocountry.netlify.app")
+                builder.AllowAnyOrigin()
                        .AllowAnyHeader()
                        .AllowAnyMethod();
             });
@@ -91,7 +91,7 @@ public class Startup
         }
 
         // Habilita el uso de Frontend y Backend de distintas fuentes
-        app.UseCors("AllowNetlifyClient");
+        app.UseCors("AllowAll");
 
         // Redirecciona las requests HTTP a HTTPS
         app.UseHttpsRedirection();

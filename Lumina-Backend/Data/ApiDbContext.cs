@@ -10,6 +10,21 @@ namespace Lumina_Backend.Data
 
         }
 
+        public override int SaveChanges()
+        {
+            // Actualiza la fecha de modificación para los modelados que referencian el BaseEntity, solo actualiza los modelos que use cada API
+            var entities = ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Modified && e.Entity is BaseEntity)
+                .Select(e => e.Entity as BaseEntity);
+
+            foreach (var entity in entities)
+            {
+                entity.DateUpdated = DateTime.UtcNow;
+            }
+
+            return base.SaveChanges();
+        }
+
         private string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
