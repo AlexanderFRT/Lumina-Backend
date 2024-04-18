@@ -12,6 +12,8 @@
     },
     "https": {
       "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "https://luminabank.netlify.app",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       },
