@@ -33,13 +33,9 @@ public class Program
             });
         });
 
-        var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
         builder.Services.AddEntityFrameworkNpgsql()
         .AddDbContext<ApiDbContext>(opt =>
-        opt.UseNpgsql(connectionString));
-
-        //  Cuando ya se vaya a hacer el despliegue local en Docker de la versión final del DB se elimina la env variable connectionString y se modifica el servicio nuevamente con el codigo de abajo, para usar el localhost string del appsettings.json
-        //      opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaConnection")));
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("LuminaConnection"))); 
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
