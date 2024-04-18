@@ -22,15 +22,15 @@ public class Startup
     {
         services.AddCors(options =>
         {
-            options.AddPolicy("AllowAll", builder =>
+            options.AddPolicy("EnableNetlify", builder =>
             {
-                builder.AllowAnyOrigin()
+                builder.WithOrigins("https://luminabank.netlify.app")
                        .AllowAnyHeader()
-                       .AllowAnyMethod();
+                       .AllowAnyMethod()
+                       .AllowCredentials();
             });
         });
 
-        // Autenticación con JWT
         try
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
@@ -65,10 +65,9 @@ public class Startup
         catch (Exception ex)
         {
             _logger.LogError(ex, "Se produjo un error al configurar la autenticación JWT.");
-            throw; // Vuelva a lanzar la excepción para que la aplicación la maneje
+            throw;
         }
 
-        // Middleware de límite de tasa
         services.AddLogging(builder =>
         {
             builder.AddConsole();
@@ -89,24 +88,12 @@ public class Startup
         {
             app.UseHsts(); // Habilita HSTS (HTTP Strict Transport Security)
         }
-
-        // Habilita el uso de Frontend y Backend de distintas fuentes
-        app.UseCors("AllowAll");
-
-        // Redirecciona las requests HTTP a HTTPS
         app.UseHttpsRedirection();
-
-        // Middleware de límite de tasa
-        app.UseMiddleware<RateLimitMiddleware>();
-
         app.UseRouting();
-
-        // Middleware de autenticación
+        app.UseMiddleware<RateLimitMiddleware>();
+        app.UseCors("EnableNetlify");
         app.UseAuthentication();
         app.UseAuthorization();
-
-        // Otras configuraciones generales de middleware
-
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
