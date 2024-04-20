@@ -3,6 +3,7 @@ using Lumina_Backend.Middleware;
 using Lumina_Backend.Options;
 using Lumina_Backend.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace Lumina_Backend;
 
@@ -26,7 +27,7 @@ public class Program
         {
             options.AddPolicy("EnableNetlify", builder =>
             {
-                builder.WithOrigins("https://luminabank.netlify.app")
+                builder.WithOrigins("https://luminabank.netlify.app", "http://localhost:4200")
                        .AllowAnyHeader()
                        .AllowAnyMethod()
                        .AllowCredentials();
@@ -51,6 +52,11 @@ public class Program
         builder.Services.AddAuthentication("Bearer").AddJwtBearer();
         builder.Services.AddSingleton<TokenManager>();
         builder.Services.AddAuthorization();
+        builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            });
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())

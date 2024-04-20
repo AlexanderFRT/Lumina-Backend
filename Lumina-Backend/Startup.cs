@@ -4,6 +4,7 @@ using Lumina_Backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Lumina_Backend.Options;
 using Lumina_Backend.Middleware;
+using System.Text.Json.Serialization;
 
 namespace Lumina_Backend;
 
@@ -24,7 +25,7 @@ public class Startup
         {
             options.AddPolicy("EnableNetlify", builder =>
             {
-                builder.WithOrigins("https://luminabank.netlify.app")
+                builder.WithOrigins("https://luminabank.netlify.app", "http://localhost:4200")
                        .AllowAnyHeader()
                        .AllowAnyMethod()
                        .AllowCredentials();
@@ -76,6 +77,12 @@ public class Startup
         services.Configure<RateLimitOptions>(_configuration.GetSection("RateLimit"));
         services.AddSingleton<IRateLimitCounter, MemoryCacheRateLimitCounter>();
         services.AddSingleton<TokenManager>();
+
+        services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
