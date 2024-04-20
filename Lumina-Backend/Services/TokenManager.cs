@@ -39,7 +39,8 @@ public class TokenManager
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, user.UserName)
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(tokenExpirationMinutes), // Establecer el tiempo de expiración inicial
                 Issuer = issuer,

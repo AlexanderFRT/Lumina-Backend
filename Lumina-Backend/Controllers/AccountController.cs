@@ -2,7 +2,7 @@
 using Lumina_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 
 namespace Lumina_Backend.Controllers;
@@ -26,9 +26,7 @@ public class AccountController : ControllerBase
         try
         {
             var userId = GetAuthenticatedUserId();
-            var userIdInt = int.Parse(userId);
-
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userIdInt);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId.Id);
 
             if (user == null)
             {
@@ -44,7 +42,8 @@ public class AccountController : ControllerBase
                 User = user,
                 AccountNumber = accountNumberGenerated,
                 Type = AccountType.Savings,
-                Balance = 0
+                Balance = 0,
+                Status = EntityStatus.Active
             };
 
             _context.Accounts.Add(account);
@@ -69,8 +68,7 @@ public class AccountController : ControllerBase
         try
         {
             var userId = GetAuthenticatedUserId();
-
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id.ToString() == userId);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId.Id);
 
             if (user == null)
             {
@@ -84,7 +82,8 @@ public class AccountController : ControllerBase
                 User = user,
                 AccountNumber = accountNumberGenerated,
                 Type = AccountType.Checking,
-                Balance = 0
+                Balance = 0,
+                Status = EntityStatus.Active
             };
 
             _context.Accounts.Add(account);
@@ -117,14 +116,14 @@ public class AccountController : ControllerBase
         int numeroCuenta = 0;
 
         // Generar el prefijo del número de cuenta (en este caso, el código oficial del banco)
-        int prefijo = 1234;
+        int prefijo = 116;
 
         // Se asegura de que el número de cuenta generado sea único
         while (true)
         {
             // Genera un nuevo número de cuenta aleatorio
             string numeroCuentaAleatorio = "";
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 numeroCuentaAleatorio += random.Next(0, 10).ToString();
             }
@@ -141,16 +140,41 @@ public class AccountController : ControllerBase
         return numeroCuenta;
     }
 
-    private string GetAuthenticatedUserId()
+    private UserId GetAuthenticatedUserId()
     {
-        var userIdClaim = HttpContext.User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier);
+        var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-        if (userIdClaim == null)
+        if (string.IsNullOrEmpty(token))
+        {
+            throw new InvalidOperationException("El token JWT no fue encontrado en la solicitud.");
+        }
+
+        var handler = new JwtSecurityTokenHandler();
+        var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+
+        if (jsonToken == null)
+        {
+            throw new InvalidOperationException("El token JWT no es válido.");
+        }
+
+        var userId = jsonToken.Claims.FirstOrDefault(claim => claim.Type == "nameid")?.Value;
+
+        if (string.IsNullOrEmpty(userId))
         {
             throw new InvalidOperationException("El ID del usuario no fue encontrado en el Token JWT.");
         }
 
-        return userIdClaim.Value;
+        if (!int.TryParse(userId, out int parsedUserId))
+        {
+            throw new InvalidOperationException("El ID del usuario no es válido.");
+        }
+
+        return new UserId { Id = parsedUserId };
+    }
+
+    public class UserId
+    {
+        public int Id { get; set; }
     }
 
     public class AccountRequest
