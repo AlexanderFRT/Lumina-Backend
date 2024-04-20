@@ -142,7 +142,7 @@ public class AccountController : ControllerBase
 
     private UserId GetAuthenticatedUserId()
     {
-        var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+        var token = HttpContext.Request.Headers.Authorization.FirstOrDefault()?.Split(" ").Last();
 
         if (string.IsNullOrEmpty(token))
         {

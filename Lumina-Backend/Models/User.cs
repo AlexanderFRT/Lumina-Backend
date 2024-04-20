@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Lumina_Backend.Models;
+﻿namespace Lumina_Backend.Models;
 
 public class User : BaseEntity
 {
