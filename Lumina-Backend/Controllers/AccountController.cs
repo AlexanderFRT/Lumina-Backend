@@ -2,27 +2,22 @@
 using Lumina_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.IdentityModel.Tokens.Jwt;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace Lumina_Backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AccountController : ControllerBase
+public class AccountController(ApiDbContext context, ILogger<AccountController> logger) : MainController
 {
-    private readonly ApiDbContext _context;
-    private readonly ILogger<AccountController> _logger;
-
-    public AccountController(ApiDbContext context, ILogger<AccountController> logger)
-    {
-        _context = context;
-        _logger = logger;
-    }
+    private readonly ApiDbContext _context = context;
+    private readonly ILogger<AccountController> _logger = logger;
 
     [HttpPost("CuentaAhorro")]
     public async Task<ActionResult<Account>> CreateSavingsAccount([FromBody] AccountRequest request)
     {
+        ArgumentNullException.ThrowIfNull(request);
+
         try
         {
             var userId = GetAuthenticatedUserId();
@@ -50,7 +45,7 @@ public class AccountController : ControllerBase
             await _context.SaveChangesAsync();
 
             // Devuelve una respuesta indicando que se creó la cuenta satisfactoriamente.
-            return CreatedAtAction(nameof(GetAccountTransactions), new { accountNumber = accountNumberGenerated }, account);
+            return Ok(new { Message = "Cuenta de ahorro creada exitosamente." });
         }
         catch (Exception ex)
         {
@@ -65,6 +60,8 @@ public class AccountController : ControllerBase
     [HttpPost("CuentaCorriente")]
     public async Task<ActionResult<Account>> CreateCheckingAccount([FromBody] AccountRequest request)
     {
+        ArgumentNullException.ThrowIfNull(request);
+
         try
         {
             var userId = GetAuthenticatedUserId();
@@ -89,7 +86,7 @@ public class AccountController : ControllerBase
             _context.Accounts.Add(account);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAccountTransactions), new { accountNumber = accountNumberGenerated }, account);
+            return Ok(new { Message = "Cuenta corriente creada exitosamente." });
         }
         catch (Exception)
         {
@@ -112,7 +109,7 @@ public class AccountController : ControllerBase
 
     private int GenerarNumeroCuenta()
     {
-        Random random = new Random();
+        Random random = new();
         int numeroCuenta = 0;
 
         // Generar el prefijo del número de cuenta (en este caso, el código oficial del banco)
@@ -140,38 +137,6 @@ public class AccountController : ControllerBase
         return numeroCuenta;
     }
 
-    private UserId GetAuthenticatedUserId()
-    {
-        var token = HttpContext.Request.Headers.Authorization.FirstOrDefault()?.Split(" ").Last();
-
-        if (string.IsNullOrEmpty(token))
-        {
-            throw new InvalidOperationException("El token JWT no fue encontrado en la solicitud.");
-        }
-
-        var handler = new JwtSecurityTokenHandler();
-        var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
-
-        if (jsonToken == null)
-        {
-            throw new InvalidOperationException("El token JWT no es válido.");
-        }
-
-        var userId = jsonToken.Claims.FirstOrDefault(claim => claim.Type == "nameid")?.Value;
-
-        if (string.IsNullOrEmpty(userId))
-        {
-            throw new InvalidOperationException("El ID del usuario no fue encontrado en el Token JWT.");
-        }
-
-        if (!int.TryParse(userId, out int parsedUserId))
-        {
-            throw new InvalidOperationException("El ID del usuario no es válido.");
-        }
-
-        return new UserId { Id = parsedUserId };
-    }
-
     public class UserId
     {
         public int Id { get; set; }
@@ -179,6 +144,7 @@ public class AccountController : ControllerBase
 
     public class AccountRequest
     {
+        [EnumDataType(typeof(AccountType))]
         public AccountType Type { get; set; }
     }
 }

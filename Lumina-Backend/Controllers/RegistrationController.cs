@@ -1,6 +1,5 @@
 ﻿using Lumina_Backend.Data;
 using Lumina_Backend.Models;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,14 +7,9 @@ namespace Lumina_Backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class RegistrationController : ControllerBase
+public class RegistrationController(ApiDbContext context) : ControllerBase
 {
-    private readonly ApiDbContext _context;
-
-    public RegistrationController(ApiDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApiDbContext _context = context;
 
     // POST: api/Registration https://localhost:7024/api/Registration
     // Endpoint para registrarse
@@ -91,7 +85,7 @@ public class RegistrationController : ControllerBase
     }
 
     // Método para encriptar la contraseña usando BCrypt
-    private string HashPassword(string password)
+    private static string HashPassword(string password)
     {
         // Genera una sal (string aleatorio para evitar duplicados, y mayor seguridad) y luego encripta la contraseña usando BCrypt
         return BCrypt.Net.BCrypt.HashPassword(password);
@@ -100,8 +94,8 @@ public class RegistrationController : ControllerBase
     // Representa una solicitud de registro de usuario y los parámetros que se solicitan
     public class RegistrationRequest
     {
-        public string UserName { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
+        public string? UserName { get; set; }
+        public string? Password { get; set; }
+        public string? Email { get; set; }
     }
 }

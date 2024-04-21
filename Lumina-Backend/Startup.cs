@@ -8,16 +8,10 @@ using System.Text.Json.Serialization;
 
 namespace Lumina_Backend;
 
-public class Startup
+public class Startup(IConfiguration configuration, ILogger<Startup> logger)
 {
-    private readonly IConfiguration _configuration;
-    private readonly ILogger<Startup> _logger;
-
-    public Startup(IConfiguration configuration, ILogger<Startup> logger)
-    {
-        _configuration = configuration;
-        _logger = logger;
-    }
+    private readonly IConfiguration _configuration = configuration;
+    private readonly ILogger<Startup> _logger = logger;
 
     public void ConfigureServices(IServiceCollection services)
     {

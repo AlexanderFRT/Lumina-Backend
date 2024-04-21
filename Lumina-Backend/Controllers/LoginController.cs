@@ -6,16 +6,10 @@ namespace Lumina_Backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class LoginController : ControllerBase
+public class LoginController(ApiDbContext context, TokenManager tokenManager) : ControllerBase
 {
-    private readonly ApiDbContext _context;
-    private readonly TokenManager _tokenManager;
-
-    public LoginController(ApiDbContext context, TokenManager tokenManager)
-    {
-        _context = context;
-        _tokenManager = tokenManager;
-    }
+    private readonly ApiDbContext _context = context;
+    private readonly TokenManager _tokenManager = tokenManager;
 
     // POST: api/Login https://localhost:7024/api/Login
     // Endpoint para iniciar sesión
@@ -54,7 +48,7 @@ public class LoginController : ControllerBase
     // Representa una solicitud de inicio de sesión con credenciales de usuario
     public class LoginRequest
     {
-        public string UserName { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public string? UserName { get; set; }
+        public string? Password { get; set; }
     }
 }
