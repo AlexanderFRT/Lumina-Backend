@@ -5,7 +5,7 @@ namespace Lumina_Backend.Models;
 public class Transaction : BaseEntity
 {
     public int AccountNumber { get; set; }
-    public virtual Account Account { get; set; }
+    public virtual Account? Account { get; set; }
 
     [Column(TypeName = "varchar(24)")]
     public TransactionType Type { get; set; }

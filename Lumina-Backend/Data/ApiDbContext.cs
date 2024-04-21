@@ -3,13 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lumina_Backend.Data
 {
-    public class ApiDbContext : DbContext
+    public class ApiDbContext(DbContextOptions<ApiDbContext> options) : DbContext(options)
     {
-        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
-        {
-
-        }
-
         public override int SaveChanges()
         {
             // Actualiza la fecha de modificación para los modelados que referencian el BaseEntity, solo actualiza los modelos que use cada API
@@ -19,13 +14,16 @@ namespace Lumina_Backend.Data
 
             foreach (var entity in entities)
             {
-                entity.DateUpdated = DateTime.UtcNow;
+                if (entity != null)
+                {
+                    entity.DateUpdated = DateTime.UtcNow;
+                }
             }
 
             return base.SaveChanges();
         }
 
-        private string HashPassword(string password)
+        private static string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
@@ -73,15 +71,15 @@ namespace Lumina_Backend.Data
 
             var demoUsers = new List<User>
             {
-                new User { Id = -1, UserName = "ajruiz2204", Password = HashPassword("123456"), Email = "ajruiz2204@example.com", FullName = "Alejandro Ruíz"},
-                new User { Id = -2, UserName = "AlexanderFRT", Password = HashPassword("123456"), Email = "alexanderfrt@example.com", FullName = "Alexander Flores"},
-                new User { Id = -3, UserName = "4rnol", Password = HashPassword("123456"), Email = "4rnol@example.com", FullName = "Arnol Flores"},
-                new User { Id = -4, UserName = "ema_ramirez", Password = HashPassword("123456"), Email = "ema_ramirez@example.com", FullName = "Emanuel Ramirez"},
-                new User { Id = -5, UserName = "ezealeguzman", Password = HashPassword("123456"), Email = "ezealeguzman@example.com", FullName = "Ezequiel Guzman"},
-                new User { Id = -6, UserName = "facu597", Password = HashPassword("123456"), Email = "facu597@example.com", FullName = "Facundo Castro"},
-                new User { Id = -7, UserName = "giolucc", Password = HashPassword("123456"), Email = "giolucc@example.com", FullName = "Giovanni Lucchetta"},
-                new User { Id = -8, UserName = "karla6524", Password = HashPassword("123456"), Email = "karla6524@example.com", FullName = "Karla Chavez"},
-                new User { Id = -9, UserName = "mabel8750_", Password = HashPassword("123456"), Email = "mabel8750_@example.com", FullName = "Mabel Ceballos"}
+                new() { Id = -1, UserName = "ajruiz2204", Password = HashPassword("123456"), Email = "ajruiz2204@example.com", FullName = "Alejandro Ruíz"},
+                new() { Id = -2, UserName = "AlexanderFRT", Password = HashPassword("123456"), Email = "alexanderfrt@example.com", FullName = "Alexander Flores"},
+                new(){ Id = -3, UserName = "4rnol", Password = HashPassword("123456"), Email = "4rnol@example.com", FullName = "Arnol Flores"},
+                new() { Id = -4, UserName = "ema_ramirez", Password = HashPassword("123456"), Email = "ema_ramirez@example.com", FullName = "Emanuel Ramirez"},
+                new() { Id = -5, UserName = "ezealeguzman", Password = HashPassword("123456"), Email = "ezealeguzman@example.com", FullName = "Ezequiel Guzman"},
+                new() { Id = -6, UserName = "facu597", Password = HashPassword("123456"), Email = "facu597@example.com", FullName = "Facundo Castro"},
+                new() { Id = -7, UserName = "giolucc", Password = HashPassword("123456"), Email = "giolucc@example.com", FullName = "Giovanni Lucchetta"},
+                new() { Id = -8, UserName = "karla6524", Password = HashPassword("123456"), Email = "karla6524@example.com", FullName = "Karla Chavez"},
+                new() { Id = -9, UserName = "mabel8750_", Password = HashPassword("123456"), Email = "mabel8750_@example.com", FullName = "Mabel Ceballos"}
             };
             builder.Entity<User>().HasData(demoUsers);
          }
