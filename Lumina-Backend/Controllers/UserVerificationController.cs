@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Lumina_Backend.Data;
 using Lumina_Backend.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lumina_Backend.Controllers;
 
@@ -92,6 +94,7 @@ public class UserVerificationController(ApiDbContext context) : MainController
         public string? UserName { get; set; }
         public string? Email { get; set; }
         public string? FullName { get; set; }
+        [Column(TypeName = "Date")]
         public DateTime? DateOfBirth { get; set; }
         public string? Address { get; set; }
         public string? DNI { get; set; }
@@ -101,6 +104,9 @@ public class UserVerificationController(ApiDbContext context) : MainController
     public class UserVerificationRequest
     {
         public string? FullName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Column(TypeName = "Date")]
         public DateTime? DateOfBirth { get; set; }
         public string? Address { get; set; }
         public string? DNI { get; set; }

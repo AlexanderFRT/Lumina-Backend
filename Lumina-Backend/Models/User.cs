@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lumina_Backend.Models;
 
@@ -16,6 +17,7 @@ public class User : BaseEntity
 
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+    [Column(TypeName = "Date")]
     public DateTime? DateOfBirth { get; set; }
 
     public string? Address { get; set; }

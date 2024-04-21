@@ -20,12 +20,12 @@ namespace Lumina_Backend.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserName = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
+                    UserName = table.Column<string>(type: "text", nullable: true),
+                    Password = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
                     SessionToken = table.Column<string>(type: "text", nullable: true),
                     FullName = table.Column<string>(type: "text", nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "Date", nullable: true),
                     Address = table.Column<string>(type: "text", nullable: true),
                     DNI = table.Column<string>(type: "text", nullable: true),
                     ProfileImage = table.Column<string>(type: "text", nullable: true),
@@ -139,15 +139,15 @@ namespace Lumina_Backend.Migrations
                 columns: new[] { "Id", "Address", "DNI", "DateAdded", "DateOfBirth", "DateUpdated", "Email", "FullName", "Password", "ProfileImage", "SessionToken", "Status", "UserName" },
                 values: new object[,]
                 {
-                    { -9, null, null, new DateTime(2024, 4, 16, 16, 47, 54, 129, DateTimeKind.Utc).AddTicks(8612), null, new DateTime(2024, 4, 16, 16, 47, 54, 129, DateTimeKind.Utc).AddTicks(8617), "mabel8750_@example.com", "Mabel Ceballos", "$2a$11$Y1bSqAXhMhAr1IcLduoZW.I8Rq1URxUfUGd9KTsojka.GwsbL9Gei", null, null, "Unverified", "mabel8750_" },
-                    { -8, null, null, new DateTime(2024, 4, 16, 16, 47, 54, 14, DateTimeKind.Utc).AddTicks(400), null, new DateTime(2024, 4, 16, 16, 47, 54, 14, DateTimeKind.Utc).AddTicks(404), "karla6524@example.com", "Karla Chavez", "$2a$11$zSeH32RcoW6wBoI77Liw2e5JDfYfc2QePKGVZwtfKgd/BzUuj/l96", null, null, "Unverified", "karla6524" },
-                    { -7, null, null, new DateTime(2024, 4, 16, 16, 47, 53, 897, DateTimeKind.Utc).AddTicks(2636), null, new DateTime(2024, 4, 16, 16, 47, 53, 897, DateTimeKind.Utc).AddTicks(2639), "giolucc@example.com", "Giovanni Lucchetta", "$2a$11$86YO7MPaCmi0cLRDx3LA/OMhCz5L8bNYFZwtadMn9WuVth5lyvMNu", null, null, "Unverified", "giolucc" },
-                    { -6, null, null, new DateTime(2024, 4, 16, 16, 47, 53, 781, DateTimeKind.Utc).AddTicks(3148), null, new DateTime(2024, 4, 16, 16, 47, 53, 781, DateTimeKind.Utc).AddTicks(3156), "facu597@example.com", "Facundo Castro", "$2a$11$Uv/f9eR4yxaGFiZHIC0MkeKq9LsxLyCLoirL/thSDyKmhPeY1AioK", null, null, "Unverified", "facu597" },
-                    { -5, null, null, new DateTime(2024, 4, 16, 16, 47, 53, 660, DateTimeKind.Utc).AddTicks(7302), null, new DateTime(2024, 4, 16, 16, 47, 53, 660, DateTimeKind.Utc).AddTicks(7306), "ezealeguzman@example.com", "Ezequiel Guzman", "$2a$11$Gb7NtGIspAnvK6IpAU1iD.IkLq4Mtte.g7ntaJ74i00ppnLbVtLZG", null, null, "Unverified", "ezealeguzman" },
-                    { -4, null, null, new DateTime(2024, 4, 16, 16, 47, 53, 541, DateTimeKind.Utc).AddTicks(6846), null, new DateTime(2024, 4, 16, 16, 47, 53, 541, DateTimeKind.Utc).AddTicks(6849), "ema_ramirez@example.com", "Emanuel Ramirez", "$2a$11$KeB9enSHQPL4nKKbes7Sj.an4BSroNJsbtnL4JxaBSSBTkVnB.vKi", null, null, "Unverified", "ema_ramirez" },
-                    { -3, null, null, new DateTime(2024, 4, 16, 16, 47, 53, 422, DateTimeKind.Utc).AddTicks(2746), null, new DateTime(2024, 4, 16, 16, 47, 53, 422, DateTimeKind.Utc).AddTicks(2752), "4rnol@example.com", "Arnol Flores", "$2a$11$ZGzVYGF39NOP/0VFSbn2D.dPW.lFG4s3wz.fuANLgIh9cmYcrHExm", null, null, "Unverified", "4rnol" },
-                    { -2, null, null, new DateTime(2024, 4, 16, 16, 47, 53, 294, DateTimeKind.Utc).AddTicks(4109), null, new DateTime(2024, 4, 16, 16, 47, 53, 294, DateTimeKind.Utc).AddTicks(4114), "alexanderfrt@example.com", "Alexander Flores", "$2a$11$9u2GdVuHcfbcnvsP7xfR1u5s/P8sqY6plv2mD20vnHIuui0H0HJpu", null, null, "Unverified", "AlexanderFRT" },
-                    { -1, null, null, new DateTime(2024, 4, 16, 16, 47, 53, 172, DateTimeKind.Utc).AddTicks(7497), null, new DateTime(2024, 4, 16, 16, 47, 53, 172, DateTimeKind.Utc).AddTicks(7499), "ajruiz2204@example.com", "Alejandro Ruíz", "$2a$11$cOwRns/AVg34HpYY0WM/gOhJPwJr9F5GU1FwxkaaSUJY9B2t5sJoW", null, null, "Unverified", "ajruiz2204" }
+                    { -9, null, null, new DateTime(2024, 4, 21, 23, 34, 50, 521, DateTimeKind.Utc).AddTicks(196), null, new DateTime(2024, 4, 21, 23, 34, 50, 521, DateTimeKind.Utc).AddTicks(199), "mabel8750_@example.com", "Mabel Ceballos", "$2a$11$tPVtFLamiFjGDIMSR9dvBedVUbuElSw0oKAY.5E4CkHUiHIAIBXhO", null, null, "Unverified", "mabel8750_" },
+                    { -8, null, null, new DateTime(2024, 4, 21, 23, 34, 50, 404, DateTimeKind.Utc).AddTicks(9572), null, new DateTime(2024, 4, 21, 23, 34, 50, 404, DateTimeKind.Utc).AddTicks(9576), "karla6524@example.com", "Karla Chavez", "$2a$11$xHXAwH9jIz3utBTCf4be4ObHsnR1hRCRQnREhkVwFqPS8IOWG6UiS", null, null, "Unverified", "karla6524" },
+                    { -7, null, null, new DateTime(2024, 4, 21, 23, 34, 50, 287, DateTimeKind.Utc).AddTicks(2087), null, new DateTime(2024, 4, 21, 23, 34, 50, 287, DateTimeKind.Utc).AddTicks(2091), "giolucc@example.com", "Giovanni Lucchetta", "$2a$11$fC13mUsQqRvi2Plth1QpqeZhMkfkJrfBWJwuCp8L.L/v4bJJuERMO", null, null, "Unverified", "giolucc" },
+                    { -6, null, null, new DateTime(2024, 4, 21, 23, 34, 50, 167, DateTimeKind.Utc).AddTicks(6635), null, new DateTime(2024, 4, 21, 23, 34, 50, 167, DateTimeKind.Utc).AddTicks(6640), "facu597@example.com", "Facundo Castro", "$2a$11$ZVJbHHGVIYx1Ohwl.M0U3eeC/6kqfjRCv7WjD4OrfKJy2IcDgDHcq", null, null, "Unverified", "facu597" },
+                    { -5, null, null, new DateTime(2024, 4, 21, 23, 34, 50, 42, DateTimeKind.Utc).AddTicks(2956), null, new DateTime(2024, 4, 21, 23, 34, 50, 42, DateTimeKind.Utc).AddTicks(2959), "ezealeguzman@example.com", "Ezequiel Guzman", "$2a$11$tCj8dO9fuiEnvi43eYSRY.c7OPuL5qlqndJqrIMPsPeosZtaPenEa", null, null, "Unverified", "ezealeguzman" },
+                    { -4, null, null, new DateTime(2024, 4, 21, 23, 34, 49, 924, DateTimeKind.Utc).AddTicks(8399), null, new DateTime(2024, 4, 21, 23, 34, 49, 924, DateTimeKind.Utc).AddTicks(8403), "ema_ramirez@example.com", "Emanuel Ramirez", "$2a$11$bNRM4R0dPdKL7YywTBHz7.nHfAO5E4wbge4BLEfZU99EeJ3Cgm8rO", null, null, "Unverified", "ema_ramirez" },
+                    { -3, null, null, new DateTime(2024, 4, 21, 23, 34, 49, 805, DateTimeKind.Utc).AddTicks(3030), null, new DateTime(2024, 4, 21, 23, 34, 49, 805, DateTimeKind.Utc).AddTicks(3034), "4rnol@example.com", "Arnol Flores", "$2a$11$/uJ073oAhWMsT0sZYg0ps.2NfK.NOIFY7kKvkFWTQaDsc1U2ZQYaC", null, null, "Unverified", "4rnol" },
+                    { -2, null, null, new DateTime(2024, 4, 21, 23, 34, 49, 685, DateTimeKind.Utc).AddTicks(4831), null, new DateTime(2024, 4, 21, 23, 34, 49, 685, DateTimeKind.Utc).AddTicks(4835), "alexanderfrt@example.com", "Alexander Flores", "$2a$11$/Q46ZB8iGyOjl8HeTkXkf.k.Eta4T1GQWyBR.brDPOKnLxonOeyxC", null, null, "Unverified", "AlexanderFRT" },
+                    { -1, null, null, new DateTime(2024, 4, 21, 23, 34, 49, 570, DateTimeKind.Utc).AddTicks(2559), null, new DateTime(2024, 4, 21, 23, 34, 49, 570, DateTimeKind.Utc).AddTicks(2561), "ajruiz2204@example.com", "Alejandro Ruíz", "$2a$11$Y0fp3sgSejmaNgif/bLBU.4O5MsShaNE7wVjcyHMNJiplYubBOdCW", null, null, "Unverified", "ajruiz2204" }
                 });
 
             migrationBuilder.CreateIndex(
