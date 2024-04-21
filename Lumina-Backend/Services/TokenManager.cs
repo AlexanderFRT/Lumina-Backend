@@ -6,16 +6,10 @@ using System.Text;
 
 namespace Lumina_Backend.Services;
 
-public class TokenManager
+public class TokenManager(IConfiguration configuration, ILogger<TokenManager> logger)
 {
-    private readonly IConfiguration _configuration;
-    private readonly ILogger<TokenManager> _logger;
-
-    public TokenManager(IConfiguration configuration, ILogger<TokenManager> logger)
-    {
-        _configuration = configuration;
-        _logger = logger;
-    }
+    private readonly IConfiguration _configuration = configuration;
+    private readonly ILogger<TokenManager> _logger = logger;
 
     public string GenerateToken(User user)
     {
@@ -39,7 +33,7 @@ public class TokenManager
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Name, user.UserName ?? ""),
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(tokenExpirationMinutes), // Establecer el tiempo de expiración inicial
@@ -67,10 +61,9 @@ public class TokenManager
             var tokenExpirationMinutes = Convert.ToInt32(jwtSettings["TokenExpirationMinutes"]);
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var originalToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
             var now = DateTime.UtcNow;
 
-            if (originalToken == null)
+            if (tokenHandler.ReadToken(token) is not JwtSecurityToken originalToken)
             {
                 throw new InvalidOperationException("Token inválido. No se puede actualizar el tiempo de expiración.");
             }

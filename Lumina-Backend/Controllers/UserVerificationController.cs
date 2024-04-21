@@ -1,103 +1,108 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Lumina_Backend.Data;
 using Lumina_Backend.Models;
 
-namespace Lumina_Backend.Controllers
+namespace Lumina_Backend.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class UserVerificationController(ApiDbContext context) : MainController
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserVerificationController : ControllerBase
+    private readonly ApiDbContext _context = context;
+
+    [HttpGet("DatosUsuario")]
+    public async Task<ActionResult<UserView>> GetUser()
     {
-        private readonly ApiDbContext _context;
+        var userId = GetAuthenticatedUserId();
+        var user = await _context.Users.FindAsync(userId.Id);
 
-        public UserVerificationController(ApiDbContext context)
+        if (user == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        // GET: api/UserVerification
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        var userViewModel = new UserView
         {
-            return await _context.Users.ToListAsync();
+            UserName = user.UserName,
+            Email = user.Email,
+            FullName = user.FullName,
+            DateOfBirth = user.DateOfBirth,
+            Address = user.Address,
+            DNI = user.DNI,
+            ProfileImage = user.ProfileImage
+        };
+
+        return userViewModel;
+    }
+
+    [HttpPut("VerificaciónUsuario")]
+    public async Task<IActionResult> UpdateUserDetails(UserVerificationRequest userDetails)
+    {
+        var userId = GetAuthenticatedUserId();
+        var user = await _context.Users.FindAsync(userId.Id);
+
+        if (user == null)
+        {
+            return NotFound();
         }
 
-        // GET: api/UserVerification/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        if (user.Status == EntityStatus.Verified)
         {
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
+            return BadRequest("El usuario ya está verificado.");
         }
 
-        // PUT: api/UserVerification/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        user.FullName = userDetails.FullName?.Trim();
+        user.DateOfBirth = userDetails.DateOfBirth;
+        user.Address = userDetails.Address?.Trim();
+        user.DNI = userDetails.DNI?.Trim();
+
+        // Validar FullName: Debe tener al menos 2 palabras separadas, máximo 4
+        if (string.IsNullOrWhiteSpace(user.FullName) || user.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length < 2 || user.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length > 4)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return BadRequest("El nombre completo debe tener al menos 2 palabras y como máximo 4.");
         }
 
-        // POST: api/UserVerification
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        // Validar Address: Debe tener al menos 30 caracteres
+        if (string.IsNullOrWhiteSpace(user.Address) || user.Address.Length < 20 || user.Address.Length > 80)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return BadRequest("La dirección debe tener al menos 20 carácteres, y no más de 80.");
         }
 
-        // DELETE: api/UserVerification/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        // Validar DNI: Debe tener entre 6 y 12 dígitos
+        if (string.IsNullOrWhiteSpace(user.DNI) || user.DNI.Length < 6 || user.DNI.Length > 12 || !user.DNI.All(char.IsDigit))
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return BadRequest("El DNI debe tener entre 6 y 12 dígitos numéricos.");
         }
 
-        private bool UserExists(int id)
+        // Validar DateOfBirth: Asegurar que todas las partes (día, mes, año) estén completas
+        if (!user.DateOfBirth.HasValue || user.DateOfBirth.Value == default)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return BadRequest("La fecha de nacimiento es obligatoria.");
         }
+
+        user.Status = EntityStatus.Verified;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(new { Message = "Datos del usuario actualizados correctamente." });
+    }
+
+    public class UserView
+    {
+        public string? UserName { get; set; }
+        public string? Email { get; set; }
+        public string? FullName { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public string? Address { get; set; }
+        public string? DNI { get; set; }
+        public string? ProfileImage { get; set; }
+    }
+
+    public class UserVerificationRequest
+    {
+        public string? FullName { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public string? Address { get; set; }
+        public string? DNI { get; set; }
     }
 }
