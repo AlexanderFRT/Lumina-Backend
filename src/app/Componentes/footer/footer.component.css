@@ -11,6 +11,7 @@ a{
     display: flex;
     align-items:center;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 85vw;
     margin: auto;
     padding: 15px 0;
@@ -36,7 +37,7 @@ li a:hover{
 }
 .lista_elementos{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;  
     width: 20vw;
     min-width: min-content;
     padding: 15px 0;
@@ -44,3 +45,13 @@ li a:hover{
 span{
     font-weight: bold;
 }
+
+@media (max-width:600px){
+    .container{
+        justify-content: center;
+    }
+    .lista_elementos{
+        width: 70vw;
+        text-align: center;
+    }
+} 
