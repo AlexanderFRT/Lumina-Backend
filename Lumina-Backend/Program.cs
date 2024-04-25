@@ -3,6 +3,7 @@ using Lumina_Backend.Middleware;
 using Lumina_Backend.Options;
 using Lumina_Backend.Services;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace Lumina_Backend;
@@ -53,9 +54,9 @@ public class Program
         builder.Services.AddSingleton<TokenManager>();
         builder.Services.AddAuthorization();
         builder.Services.AddControllers()
-            .AddJsonOptions(options =>
+            .AddNewtonsoftJson(options =>
             {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
         var app = builder.Build();
 

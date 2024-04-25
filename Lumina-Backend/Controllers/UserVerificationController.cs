@@ -31,7 +31,8 @@ public class UserVerificationController(ApiDbContext context) : MainController
             DateOfBirth = user.DateOfBirth,
             Address = user.Address,
             DNI = user.DNI,
-            ProfileImage = user.ProfileImage
+            ProfileImage = user.ProfileImage,
+            Status = user.Status
         };
 
         return userViewModel;
@@ -99,6 +100,7 @@ public class UserVerificationController(ApiDbContext context) : MainController
         public string? Address { get; set; }
         public string? DNI { get; set; }
         public string? ProfileImage { get; set; }
+        public EntityStatus Status { get; set; }
     }
 
     public class UserVerificationRequest

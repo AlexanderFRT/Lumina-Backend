@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using static Lumina_Backend.Controllers.AccountController;
+﻿using static Lumina_Backend.Controllers.AccountController;
+using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Lumina_Backend.Controllers;
