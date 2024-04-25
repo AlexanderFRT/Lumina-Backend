@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Lumina_Backend.Options;
 using Lumina_Backend.Middleware;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Lumina_Backend;
 
@@ -73,9 +74,9 @@ public class Startup(IConfiguration configuration, ILogger<Startup> logger)
         services.AddSingleton<TokenManager>();
 
         services.AddControllers()
-        .AddJsonOptions(options =>
+        .AddNewtonsoftJson(options =>
         {
-            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         });
     }
 

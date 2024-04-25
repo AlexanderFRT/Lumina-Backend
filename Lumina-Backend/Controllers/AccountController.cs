@@ -50,7 +50,7 @@ public class AccountController(ApiDbContext context, ILogger<AccountController> 
         catch (Exception ex)
         {
             // Registra la excepción en el registro de errores
-            _logger.LogError(ex, "Error creating account.");
+            _logger.LogError(ex, "Error al crear la cuenta.");
 
             // Maneja las excepciones de manera adecuada y devuelve un mensaje de error genérico.
             return StatusCode(500, "Se produjo un error al procesar la solicitud.");
