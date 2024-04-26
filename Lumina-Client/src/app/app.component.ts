@@ -3,11 +3,13 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './componentes/login/login.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { LandingComponent } from './Componentes/landing/landing.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, LoginComponent, RouterLink, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet,HeaderComponent,FooterComponent,LandingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
