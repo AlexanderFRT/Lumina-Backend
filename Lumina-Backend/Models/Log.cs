@@ -7,14 +7,11 @@ public class Log
 {
     [Key]
     public int Id { get; set; }
-    public virtual User User { get; set; }
-
+    public virtual User? User { get; set; }
     [Column(TypeName = "varchar(24)")]
     public ActionType Action { get; set; }
-
     [Column(TypeName = "varchar(24)")]
     public LogStatus Status { get; set; }
-
     public DateTime Timestamp { get; set; }
 
     public Log()

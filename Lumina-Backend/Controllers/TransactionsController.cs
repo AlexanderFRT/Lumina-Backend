@@ -7,7 +7,7 @@ namespace Lumina_Backend.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class TransactionsController(ApiDbContext context, ILogger<TransactionsController> logger) : ControllerBase
+public class TransactionsController(ApiDbContext context, ILogger<TransactionsController> logger) : MainController
 {
     private readonly ApiDbContext _context = context;
     private readonly ILogger<TransactionsController> _logger = logger;
@@ -17,17 +17,40 @@ public class TransactionsController(ApiDbContext context, ILogger<TransactionsCo
     {
         try
         {
+            var userId = GetAuthenticatedUserId();
+
+            var user = await _context.Users.Include(u => u.Accounts)
+                                           .FirstOrDefaultAsync(u => u.Id == userId.Id);
+
+            if (user == null)
+            {
+                return Unauthorized("ID de usuario no encontrado en el token JWT.");
+            }
+
+            if (user.Accounts != null)
+            {
+                var frozenAccount = user.Accounts.FirstOrDefault(a => a.Status == EntityStatus.Frozen);
+                if (frozenAccount != null)
+                {
+                    return BadRequest("La cuenta del usuario está congelada y no se pueden realizar transacciones.");
+                }
+            }
+            else
+            {
+                return BadRequest("La colección de cuentas del usuario es nula.");
+            }
+
             var senderAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountNumber == transferRequest.SenderAccountNumber);
             var receiverAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountNumber == transferRequest.ReceiverAccountNumber);
 
             if (senderAccount == null || receiverAccount == null)
             {
-                return NotFound("One or both of the accounts were not found.");
+                return NotFound("Una o ambas cuentas no fueron encontradas.");
             }
 
             if (senderAccount.Balance < transferRequest.Amount)
             {
-                return BadRequest("Insufficient funds in the sender's account.");
+                return BadRequest("Fondos insuficientes en la cuenta de envió.");
             }
 
             senderAccount.Balance -= transferRequest.Amount;
@@ -40,7 +63,8 @@ public class TransactionsController(ApiDbContext context, ILogger<TransactionsCo
                 Account = senderAccount,
                 Type = TransactionType.Transfer,
                 Amount = transferRequest.Amount,
-                TransactionDescription = "Transferencia realizada a la cuenta " + receiverAccount.AccountNumber
+                TransactionDescription = "Transferencia realizada a la cuenta " + receiverAccount.AccountNumber,
+                Status = EntityStatus.Completed
             };
 
             _context.Transactions.Add(transaction);

@@ -1,4 +1,4 @@
-﻿using Lumina_Backend.Data;
+﻿/* using Lumina_Backend.Data;
 using Lumina_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -148,4 +148,4 @@ public class AccountController(ApiDbContext context, ILogger<AccountController> 
         public AccountType Type { get; set; }
     }
 }
-
+*/

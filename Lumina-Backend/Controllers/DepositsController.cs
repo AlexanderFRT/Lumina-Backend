@@ -57,6 +57,19 @@ public class DepositsController(ApiDbContext context, ILogger<DepositsController
                 return Unauthorized("ID de usuario no encontrado en el token JWT.");
             }
 
+            if (user.Accounts != null)
+            {
+                var frozenAccount = user.Accounts.FirstOrDefault(a => a.Status == EntityStatus.Frozen);
+                if (frozenAccount != null)
+                {
+                    return BadRequest("La cuenta del usuario está congelada y no se pueden realizar transacciones.");
+                }
+            }
+            else
+            {
+                return BadRequest("La colección de cuentas del usuario es nula.");
+            }
+
             var account = user?.Accounts?.FirstOrDefault(a => a.AccountNumber == depositRequest.AccountNumber);
 
             if (account == null)
@@ -101,6 +114,5 @@ public class DepositsController(ApiDbContext context, ILogger<DepositsController
         public string? CardNumber { get; set; }
         public string? ExpiryDate { get; set; }
         public string? CVV { get; set; }
-        public EntityStatus Status { get; set; }
     }
 }

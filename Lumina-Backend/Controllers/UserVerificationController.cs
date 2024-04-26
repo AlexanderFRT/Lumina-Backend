@@ -3,6 +3,7 @@ using Lumina_Backend.Data;
 using Lumina_Backend.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lumina_Backend.Controllers;
 
@@ -35,7 +36,23 @@ public class UserVerificationController(ApiDbContext context) : MainController
             Status = user.Status
         };
 
-        return userViewModel;
+        var userAccounts = await _context.Accounts
+        .Where(account => account.User != null && account.User.Id == userId.Id)
+        .Select(account => new AccountView
+        {
+            AccountNumber = account.AccountNumber,
+            Type = account.Type.ToString(),
+            Balance = account.Balance
+        })
+        .ToListAsync();
+
+        var userAccountResponse = new UserAccountResponse
+        {
+            User = userViewModel,
+            Accounts = userAccounts
+        };
+
+        return Ok(userAccountResponse);
     }
 
     [HttpPut("VerificaciónUsuario")]
@@ -59,7 +76,7 @@ public class UserVerificationController(ApiDbContext context) : MainController
         user.Address = userDetails.Address?.Trim();
         user.DNI = userDetails.DNI?.Trim();
 
-        // Validar FullName: Debe tener al menos 2 palabras separadas, máximo 4
+        /* Validar FullName: Debe tener al menos 2 palabras separadas, máximo 4
         if (string.IsNullOrWhiteSpace(user.FullName) || user.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length < 2 || user.FullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length > 4)
         {
             return BadRequest("El nombre completo debe tener al menos 2 palabras y como máximo 4.");
@@ -81,7 +98,31 @@ public class UserVerificationController(ApiDbContext context) : MainController
         if (!user.DateOfBirth.HasValue || user.DateOfBirth.Value == default)
         {
             return BadRequest("La fecha de nacimiento es obligatoria.");
-        }
+        } */
+
+        int accountNumberSaving = GenerarNumeroCuenta();
+        int accountNumberChecking = GenerarNumeroCuenta();
+
+        var accountSaving = new Account
+        {
+            User = user,
+            AccountNumber = accountNumberSaving,
+            Type = AccountType.Savings,
+            Balance = 0,
+            Status = EntityStatus.Active
+        };
+
+        var accountChecking = new Account
+        {
+            User = user,
+            AccountNumber = accountNumberChecking,
+            Type = AccountType.Checking,
+            Balance = 0,
+            Status = EntityStatus.Active
+        };
+
+        _context.Accounts.Add(accountSaving);
+        _context.Accounts.Add(accountChecking);
 
         user.Status = EntityStatus.Verified;
 
@@ -103,6 +144,13 @@ public class UserVerificationController(ApiDbContext context) : MainController
         public EntityStatus Status { get; set; }
     }
 
+    public class AccountView
+    {
+        public int AccountNumber { get; set; }
+        public string? Type { get; set; }
+        public decimal Balance { get; set; }
+    }
+
     public class UserVerificationRequest
     {
         public string? FullName { get; set; }
@@ -112,5 +160,41 @@ public class UserVerificationController(ApiDbContext context) : MainController
         public DateTime? DateOfBirth { get; set; }
         public string? Address { get; set; }
         public string? DNI { get; set; }
+    }
+
+    public class UserAccountResponse
+    {
+        public UserView? User { get; set; }
+        public List<AccountView>? Accounts { get; set; }
+    }
+
+    private int GenerarNumeroCuenta()
+    {
+        Random random = new();
+        int numeroCuenta = 0;
+
+        // Generar el prefijo del número de cuenta (en este caso, el código oficial del banco)
+        int prefijo = 116;
+
+        // Se asegura de que el número de cuenta generado sea único
+        while (true)
+        {
+            // Genera un nuevo número de cuenta aleatorio
+            string numeroCuentaAleatorio = "";
+            for (int i = 0; i < 7; i++)
+            {
+                numeroCuentaAleatorio += random.Next(0, 10).ToString();
+            }
+
+            // Combina el prefijo del banco con los 6 dígitos aleatorios adicionales para generar un número de cuenta único
+            numeroCuenta = int.Parse(prefijo.ToString() + numeroCuentaAleatorio);
+
+            if (!_context.Accounts.Any(a => a.AccountNumber == numeroCuenta))
+            {
+                break;
+            }
+        }
+
+        return numeroCuenta;
     }
 }
