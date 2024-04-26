@@ -1,5 +1,5 @@
 .vs
-LuminaDeployment
-Lumina-BackEnd/obj/
-Lumina-BackEnd/bin/
+Lumina-Server/LuminaDeployment
+Lumina-Server/Lumina-BackEnd/obj/
+Lumina-Server/Lumina-BackEnd/bin/
 .idea
