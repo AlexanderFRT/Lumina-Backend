@@ -28,6 +28,7 @@ public class DepositsController(ApiDbContext context, ILogger<DepositsController
 
             var accountInfo = user?.Accounts?.Select(a => new
             {
+                a.Id,
                 a.AccountNumber,
                 a.Type,
                 a.Balance
