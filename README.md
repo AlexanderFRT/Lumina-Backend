@@ -3,7 +3,7 @@
   <div align='center'>
   <h3>Nos alegra darles la bienvenida a</h3>
   <a href="https://github.com/No-Country/c17-116-n-csharp" target="_blank">
-    <img src="Lumina-Client\src\assets\readme-gallery\main-logo.png" alt="Banner">
+    <img src="https://raw.githubusercontent.com/No-Country/c17-116-n-csharp/main/Lumina-Client/src/assets/readme-gallery/main-logo.png" alt="Banner">
   </a></div>
 <div>
   <p>
@@ -25,7 +25,7 @@
 <!-- ABOUT THE PLATFORM -->
 <br>
 <h1> 
-  <img src="Lumina-Client\src\assets\readme-gallery\icon.png" width="38px" align='left'>
+  <img src="https://raw.githubusercontent.com/No-Country/c17-116-n-csharp/main/Lumina-Client/src/assets/readme-gallery/icon.png" width="38px" align='left'>
   Acerca del Proyecto
 </h1>
 
