@@ -1,0 +1,29 @@
+<div>
+    <p>Estas a un paso de ser parte de nuestra familia</p>
+    <p>Completa tu perfil y estaras</p>
+    <form [formGroup]="validacion"  (ngSubmit)="completar()" action="" class="sing-in-form" autocomplete="off">
+
+        <div class="input-field" >
+          <i class="fa fa-user" ></i>
+          <input type="text" placeholder="Nombre Completo" formControlName="fullname">
+       </div>
+
+       <div class="input-field" >
+        <i class="fa fa-user" ></i>
+        <input type="Date" placeholder="Fecha Nacimiento" formControlName="DateOfBirth">
+     </div>
+
+        <div class="input-field ocultar"  >
+          <i class="fa fa-lock"></i>
+          <input type="text" placeholder="Direccion"  formControlName="Address">
+        </div>
+
+        <div class="input-field ocultar"  >
+            <i class="fa fa-lock"></i>
+            <input type="text" placeholder="Dni"  formControlName="DNI">
+          </div>
+       
+        
+        <input type="submit" value="Verificar" class="btn solid" [disabled]="!validacion.valid" />
+      </form>
+</div>

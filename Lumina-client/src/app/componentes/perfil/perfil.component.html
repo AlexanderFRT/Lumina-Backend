@@ -1,0 +1,38 @@
+<div id="container_perfil">
+    <section>
+        <div id="container_perfil">
+           <section>
+                <img src="{{usuario?.profileImage}}" > 
+                <div class="box_dato">
+                    <strong class="tipo_dato">Nombre de usuario</strong>
+                    <p class="dato">{{usuario?.userName | titlecase }}</p>
+                </div>
+                <div class="box_dato">
+                    <strong class="tipo_dato">Nombre completo</strong>
+                    <p class="dato">{{usuario?.fullName| titlecase }}</p>
+                </div>
+                <div class="box_dato">
+                    <strong class="tipo_dato">Dni</strong>
+                    <p class="dato">{{usuario?.dni}}</p>
+                </div>
+                <div class="box_dato">
+                    <strong class="tipo_dato">Correo Electronico</strong>
+                    <p class="dato">{{usuario?.email}}</p>
+                </div>
+                <div class="box_dato">
+                    <strong class="tipo_dato">Dirección</strong>
+                    <p class="dato">{{usuario?.address}}</p>
+                </div>
+                <div class="box_dato">
+                    <strong class="tipo_dato">Fecha de Nacimiento</strong>
+                    <p class="dato">{{usuario?.dateOfBirth}}</p> 
+                </div>
+               
+            
+          
+    
+    <router-outlet></router-outlet>
+</section> 
+</div>
+
+

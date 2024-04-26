@@ -1,0 +1,20 @@
+<form [formGroup]="Usuarios"  (ngSubmit)="mostrar()" action="" class="sing-in-form" autocomplete="off">
+    <div class="input-field"  [class.error]="hasError('username')" >
+      <i class="fa fa-user" ></i>
+      <input type="text" placeholder="Usuario" formControlName="username">
+   </div>
+    <div class="input-field ocultar" [class.error]="hasError('password')" >
+      <i class="fa fa-lock"></i>
+      <input [type]="inputType" placeholder="Contraseña" id="ContraseñaInicio" autocomplete="current-password" formControlName="password">
+      <i class="fa-solid fa-eye" (click)="mostrarContra()" *ngIf="visible"></i>
+      <i class="fa-solid fa-eye-slash" (click)="mostrarContra()" *ngIf="!visible"></i>
+    </div>
+   
+    
+    <input type="submit" value="Ingresar" class="btn solid" [disabled]="!Usuarios.valid" />
+   
+    <a routerLink="/enviarEmail" routerLinkActive="activebutton">Olvidaste Tu contraseña</a>
+
+    
+  </form>
+  <!-- <form [formGroup]="Usuarios"  (ngSubmit)="ingresoCorrecto()" action="" class="sing-in-form" autocomplete="off"> -->

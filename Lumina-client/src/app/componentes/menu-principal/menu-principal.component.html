@@ -1,0 +1,26 @@
+<div class="welcome-message">
+   <h1>{{ 'Bienvenido ' + username }}</h1> 
+   <button class="btn" (click)="salir()">Cerrar Sesion</button>
+   <button class="btn" (click)="enviar()">prueba</button>
+
+   <form action="" [formGroup]="Perfil" (ngSubmit)="completar()">
+      <div>
+      <label for="DateOfBirth">DateOfBirth</label>
+      <input type="date" name="" id="DateOfBirth" formControlName="DateOfBirth">
+   </div>
+
+   <div>
+      <input type="text" formControlName="Address" placeholder="Address">
+   </div>
+   <div>
+      <input type="text" formControlName="DNI" placeholder="DNI">
+   </div>
+      <div>
+         <input type="text" formControlName="fullname" placeholder="fullname">
+      </div>
+
+      <input type="submit" value="Completar perfil"  class="btn solid" [disabled]="!Perfil.valid">
+     
+   </form>
+</div>
+<app-footer></app-footer>

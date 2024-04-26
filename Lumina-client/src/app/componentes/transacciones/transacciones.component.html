@@ -1,0 +1,45 @@
+<div class="container" [class.active] = "isActive">
+    <div class="form-container sign-up">
+        <form>
+            <h1>transferencias</h1>
+            <input type="text" placeholder="Lumina Bank">
+            <select name="cuenta" class="select">
+                <option value="Ahorros">Ahorros</option>
+                <option value="Corriente">Corriente</option>
+            </select>
+            <input type="number" placeholder="Cuenta destinatario">
+            <input type="text" placeholder="Nombres destinatario">
+            <input type="number" placeholder="Saldo a transferir">
+            <button class="loginBtn">Enviar</button>
+        </form>
+    </div>
+    <div  class="form-container sign-in">
+        <form [formGroup]="Deposito" (ngSubmit)="depositar()">
+            <h1>Depositos</h1>
+            <select name="" id="" formControlName="accountNumber">
+                <option *ngFor="let cuenta of listaCuentas" [value]="cuenta">{{ cuenta.accountNumber }} - Saldo: $ {{ cuenta.balance }}</option>
+            </select>
+            
+            <input type="number" placeholder="Numero de Tarjeta" formControlName="cardNumber">
+            <input type="number" placeholder="CVV" formControlName="CVV">
+            <input type="text" placeholder="fecha de vencimiento" formControlName="expiryDate">
+            <input type="number" placeholder="Monto a transferir" formControlName="amount">
+           
+            <button>Depositar</button>
+        </form>
+    </div>
+    <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel toggle-left">
+                <h1 class="titulo-banco">Lumina Bank!</h1>
+                <p>Puedes realizar tus transferencias desde este panel</p>
+                <button class="hidden" id="login" (click)="togglePanel()">Ir a depositos</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Bienvenido al panel de depositos</h1>
+                <p>Puedes realizar tus depositos de banca local a traves de este panel</p>
+                <button class="hidden" id="register" (click)="togglePanel()">Ir a transferencias</button>
+            </div>
+        </div>
+    </div>
+</div>

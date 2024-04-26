@@ -1,0 +1,239 @@
+:root {
+    font-size: 10px;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-areas:
+        "secc-tipoCuenta"
+        "secc-cuentaDatos"
+        "secc-tablaResumen"
+    ;
+}
+
+.secc-tipoCuenta {
+    grid-area: secc-tipoCuenta;
+    /* background-color: aliceblue; */
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "title title"
+        "cuenta operacion";
+
+}
+
+
+.title {
+    grid-area: title;
+    padding: 5px;
+}
+
+.select-cuenta {
+    grid-area: cuenta;
+    padding: 5px;
+}
+
+.select-operacion {
+    grid-area: operacion;
+    padding: 5px;
+}
+
+select {
+    width: 90%;
+    height: 50px;
+    padding: 10px;
+}
+
+.btn {
+    width: 150px;
+    height: 49px;
+    border: none;
+    outline: none;
+    border-radius: 49px;
+    background-color: #462592; 
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: .5s; 
+}
+.btn:hover  {
+    background-color: #8259e2;
+}
+
+.btn:disabled {
+    opacity: 0.6; /* Cambiar la opacidad del botón */
+    cursor: not-allowed;
+}
+
+
+/********************************************/
+
+.secc-cuentaDatos {
+    grid-area: secc-cuentaDatos;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "sueldo corriente total aliasD";
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.total {
+    grid-area: total;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sueldo {
+    grid-area: sueldo;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.corriente {
+    grid-area: corriente;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aliasD {
+    grid-area: aliasD;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aliasD a {
+    color: red;
+    text-decoration: none;
+
+}
+
+
+
+/********************************************/
+.secc-tablaResumen {
+    grid-area: secc-tablaResumen;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "resumen";
+    /* background-color: #FFFFFF; */
+}
+
+.table-resumen {
+    grid-area: resumen;
+    border-collapse: collapse;
+    border-spacing: 5px;
+}
+
+thead>tr>td {
+    background-color: #EEF6F8;
+    border: 1px transparent;
+    padding: 5px;
+}
+
+
+
+tbody>tr>td {
+    text-align: justify;
+    border-bottom: 1px solid #4D5154;
+    background: linear-gradient(to bottom top, #EEF6F8, hsl(208, 10%, 71%));
+}
+
+
+
+
+
+@media all and (max-width:600px) {
+    .secc-tipoCuenta {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "title"
+            "cuenta"
+            "operacion";
+    }
+
+    .secc-cuentaDatos {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:
+            "sueldo corriente"
+            "total total"
+            "aliasD aliasD";
+    }
+
+    .secc-tablaResumen {
+        font-size: 1vh;
+    }
+
+
+}
+
+@media all and (min-width:600px) {
+    .secc-cuentaDatos {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+            "sueldo corriente"
+            "total aliasD"
+
+    }
+
+    .secc-tipoCuenta {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "title"
+            "cuenta"
+            "operacion";
+    }
+
+    .secc-tablaResumen {
+        font-size: 16px;
+    }
+}
+
+
+@media all and (min-width:1200px) {
+    .secc-tipoCuenta {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "title title"
+            "cuenta operacion";
+    }
+
+    .secc-cuentaDatos {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+        grid-template-areas: "sueldo corriente total aliasD";
+
+    }
+
+    .secc-tablaResumen {
+        font-size: 2vh;
+    }
+}
+
+@media all and (min-width:1700px) {
+    .container {
+        width: 1700px;
+        margin: auto;
+
+    }
+
+    .secc-tablaResumen {
+        font-size: 20px;
+    }
+}
