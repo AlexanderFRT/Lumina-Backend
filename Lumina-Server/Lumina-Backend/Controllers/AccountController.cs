@@ -1,4 +1,4 @@
-﻿/* using Lumina_Backend.Data;
+﻿using Lumina_Backend.Data;
 using Lumina_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -93,19 +93,88 @@ public class AccountController(ApiDbContext context, ILogger<AccountController> 
             return StatusCode(500, "Se produjo un error al procesar la solicitud.");
         }
     }
-    
-    [HttpGet("HistorialDeTransacciones")]
-    public async Task<ActionResult<Account>> GetAccountTransactions(int accountNumber)
-    {
-        var account = await _context.Accounts.FirstOrDefaultAsync(a => a.AccountNumber == accountNumber);
 
-        if (account == null)
+    [HttpGet("ListaDeCuentas")]
+    public async Task<ActionResult<IEnumerable<Account>>> GetUserAccounts()
+    {
+        try
         {
-            return NotFound();
-        }       
-        
-        return account;
+            var userId = GetAuthenticatedUserId();
+            var user = await _context.Users.Include(u => u.Accounts)
+                                            .FirstOrDefaultAsync(u => u.Id == userId.Id);
+
+            if (user == null)
+            {
+                return Unauthorized("ID de usuario no encontrado en el token JWT.");
+            }
+
+            var accountInfo = user?.Accounts?.Select(a => new
+            {
+                a.Id,
+                a.AccountNumber,
+                a.Type,
+                a.Balance
+            }).ToList();
+
+            return Ok(accountInfo);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al buscar las cuentas del usuario.");
+
+            return StatusCode(500, "Se produjo un error al procesar la solicitud.");
+        }
     }
+
+    [HttpGet("HistorialDeTransacciones")]
+    public async Task<ActionResult<IEnumerable<Transaction>>> GetAccountTransactions()
+    {
+        try
+        {
+            var userId = GetAuthenticatedUserId();
+            var user = await _context.Users.Include(u => u.Accounts)
+                                           .FirstOrDefaultAsync(u => u.Id == userId.Id);
+
+            if (user == null)
+            {
+                return NotFound("Usuario no encontrado.");
+            }
+
+            var accounts = await _context.Accounts.Include(a => a.Transactions)
+                                                  .Where(a => a.User != null && a.User.Id == userId.Id)
+                                                  .ToListAsync();
+
+            if (accounts == null || accounts.Count == 0)
+            {
+                return NotFound("Cuentas del usuario no encontradas.");
+            }
+
+            var userTransactions = accounts.SelectMany(a => a.Transactions ?? Enumerable.Empty<Transaction>())
+            .Select(t => new
+            {
+                t.Account.AccountNumber,
+                AccountType = t.Account.Type,
+                AccountBalance = t.Account.Balance,
+                TransactionType = t.Type,
+                TransactionAmount = t.Amount,
+                t.TransactionDescription,
+                TransactionId = t.Id,
+                TransactionStatus = t.Status,
+                TransactionDateAdded = t.DateAdded,
+                TransactionDateUpdated = t.DateUpdated
+            })
+            .ToList();
+
+            return Ok(userTransactions);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error recuperando las transacciones del usuario.");
+
+            return StatusCode(500, "Un error ha ocurrido al procesar la solicitud.");
+        }
+    }
+
 
     private int GenerarNumeroCuenta()
     {
@@ -137,15 +206,9 @@ public class AccountController(ApiDbContext context, ILogger<AccountController> 
         return numeroCuenta;
     }
 
-    public class UserId
-    {
-        public int Id { get; set; }
-    }
-
     public class AccountRequest
     {
         [EnumDataType(typeof(AccountType))]
         public AccountType Type { get; set; }
     }
 }
-*/
