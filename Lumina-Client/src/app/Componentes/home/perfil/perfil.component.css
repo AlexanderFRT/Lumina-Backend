@@ -1,0 +1,61 @@
+#container_perfil{
+    background-color: #F6F6F4; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+section{
+    font-size: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px 100px 100px ;
+    width: 80vw;
+    margin: auto;
+    padding: 50px 0;
+}
+img{
+    border-radius: 50%;
+    grid-row: 1/3; 
+   margin: auto;
+}
+.box_dato{
+    padding: 0 10px;
+}
+.dato{
+    border-radius: 10px;
+    padding: 5px 15px;  
+}
+.tipo_dato{
+    margin: 20px 0 5px 0;
+    color: #ABBDBA;
+}
+
+
+a{
+    margin: 15px 0;
+    text-decoration: none;
+}
+.btn{
+    color: #F6F6F4;
+    width: 40%;
+    margin: auto;
+    background-color: rgb(12, 136, 49);
+    border: none;
+    padding: 15px;
+    border-radius:50px ;
+    letter-spacing: 1.5px;
+    font-weight:bold;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+}
+.verificado{
+    display: none;
+}
+@media (max-width:600px){
+    section{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(8,100px) ;
+        text-align: center;
+    }
+    .box_dato{
+        margin: auto;
+    }
+}
+

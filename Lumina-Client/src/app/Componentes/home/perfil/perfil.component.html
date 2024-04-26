@@ -1,0 +1,51 @@
+<div id="container_perfil">
+    <section>
+        @if(usuario$ ){
+        
+        <img src="{{usuario$.profileImage}}" > 
+        <div class="box_dato">
+            <strong class="tipo_dato">Nombre de usuario</strong>
+            <p class="dato">{{usuario$.username | titlecase }}</p>
+        </div>
+        <div class="box_dato">
+        <strong class="tipo_dato">Nombre completo</strong>
+            <p class="dato">{{usuario$.fullName| titlecase }}</p>
+        </div>
+        <div class="box_dato">
+            <strong class="tipo_dato">Dni</strong>
+            <p class="dato">{{usuario$.dni}}</p>
+        </div>
+        <div class="box_dato">
+            <strong class="tipo_dato">Correo Electronico</strong>
+            <p class="dato">{{usuario$.email}}</p>
+        </div>
+        <div class="box_dato">
+            <strong class="tipo_dato">Dirección</strong>
+            <p class="dato">{{usuario$.adress}}</p>
+        </div>
+        <div class="box_dato">
+
+            <!-- editar fecha para que se vea como fecha jaa -->
+          <strong class="tipo_dato">Fecha de Nacimiento</strong>
+            <p class="dato">{{usuario$.dateOfBirn}}</p> 
+            
+        </div>
+        
+        <!-- cree un clase para cuando este verificado se deje de ver pero en css -->
+        <a routerLink="/PerfilEdit" >
+            <button class="btn" (click)="toggleComponent()"  
+            [class.verificado]="usuario$.verificado">VERIFICAR</button>
+        </a>
+        <a routerLink="/EstamosTrabajando">
+            Cambiar Contraseña
+        </a>
+
+      
+    }
+    </section>
+    
+    <router-outlet></router-outlet>
+        
+</div>
+
+
