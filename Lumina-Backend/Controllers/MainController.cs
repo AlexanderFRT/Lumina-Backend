@@ -1,5 +1,4 @@
-﻿using static Lumina_Backend.Controllers.AccountController;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Lumina_Backend.Controllers;
@@ -32,5 +31,9 @@ public class MainController : ControllerBase
         }
 
         return new UserId { Id = parsedUserId };
+    }
+    public class UserId
+    {
+        public int Id { get; set; }
     }
 }
