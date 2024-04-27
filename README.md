@@ -10,7 +10,7 @@
     <strong>Una innovadora plataforma bancaria diseñada para ofrecer una gestión financiera segura, confiable y sencilla.</strong> Proveyendo una interfaz intuitiva y amigable, para que nuestros clientes pueden realizar transacciones adaptadas a sus necesidades, asegurando depósitos seguros y confiables. Nuestro compromiso con la seguridad cibernética y la atención personalizada garantiza respuestas rápidas a cualquier consulta o requerimiento. Lumina Bank, más que un banco, es una familia donde buscamos que cada cliente se sienta protegido y seguro.
   </p>
     <div align='center'>
-    <a href="https://www.youtube.com" target="_blank">
+    <a href="https://www.youtube.com/watch?v=BCjnrySrRHA" target="_blank">
           <img  src="https://img.shields.io/badge/VER_DEMO-8B008B?style=for-the-badge&logo=youtube&logoColor=%23FFFFFF"/>
        </a>
    <a href="https://luminabank.netlify.app" target="_blank">
