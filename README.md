@@ -128,7 +128,7 @@ Lumina Bank representa una opción conveniente y accesible para satisfacer las n
         <a href="https://github.com/EzeAleGuzman" target="_blank">
           <img width="120" src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
         </a>
-        <a href="" target="_blank">
+        <a href="https://www.linkedin.com/in/ezealeguzman/" target="_blank">
           <img width="135" src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
         </a>
         </div>
