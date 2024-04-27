@@ -204,19 +204,19 @@ Lumina Bank representa una opción conveniente y accesible para satisfacer las n
     <td align='center'>
       <div>
         <br>
-        <a href="" target="_blank" rel="author">
+        <a href="https://github.com/schweigenderFlugel" target="_blank" rel="author">
           <img width="120" src="https://ca.slack-edge.com/T02KS88FB0E-U06QZ4A0QLQ-gf6e89681492-512"/>
         </a>
           <h4>
-          <a href="" target="_blank">Facundo Castro</a>
+          <a href="https://github.com/schweigenderFlugel" target="_blank">Facundo Castro</a>
             <br>
-            <a href="" target="_blank"><u>Team Leader</u></a>
+            <a href="https://github.com/schweigenderFlugel" target="_blank"><u>Team Leader</u></a>
           </h4>
         <div style='display: flex; flex-direction: column'>
-        <a href="" target="_blank">
+        <a href="https://github.com/schweigenderFlugel" target="_blank">
           <img width="120" src="https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=172B4D&logo=GitHub&logoColor=FFFFFF&label="/>
         </a>
-        <a href="" target="_blank">
+        <a href="https://www.linkedin.com/in/facundo-castro-87b864234/" target="_blank">
           <img width="135" src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/>
         </a>
         </div>
