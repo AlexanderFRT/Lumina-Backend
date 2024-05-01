@@ -1,3 +1,234 @@
-.central {
+.banner{
+    text-align: center;
     
+}
+.banner p{
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+.banner li{
+    display: inline;
+    padding: 1rem;
+}
+.banner a{
+    text-decoration: none;
+    color: black;
+}
+.hero{
+    margin: 2rem 0;
+    background-color: #290240;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    flex-wrap: wrap;
+}
+.hero img{
+    width: 50%;
+   
+}
+.hero p{
+    width: 30%;
+    margin: auto;
+    font-size: 3.5rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.elige_plan{
+    width: 80vw;
+    margin:auto;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 2rem 0;
+}
+.elige_plan h2{
+   
+    font-size: 3rem;
+    font-weight:bolder;
+    padding: 2rem 0;
+}
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-content: center;
+    gap:15px;
+}
+.card{
+    background-color: #2B3038;
+    color: aliceblue;
+    border-radius: 30px;
+    padding: 1rem 2.5rem;
+     margin: 1rem auto;
+     width: 25vw;
+}
+.card h3,.card span, .card p{
+    padding: 2rem 0; 
+}
+.blackcard{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(white,#9DA1A1); 
+    margin: 2rem 0 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.blackcard img{
+    width: 50%;
+}
+.blackcard_parrafo{
+    width: 50%;
+    text-align: center;
+}
+.blackcard_parrafo p{
+    font-size: 2rem;
+    width: 70%;
+    margin: auto;
+}
+.blackcard strong{
+    padding: 2rem;
+    font-size: 3rem;
+    display: block;
+}
+
+.elige_tarjeta{
+    background:url(../../../assets/images/blackcard.png);
+    background-repeat: no-repeat ;
+    background-position: center;
+    background-size: cover;
+    color:white;
+    font-size: 4rem;
+    font-family: Arial, Helvetica, sans-serif;
+    /* text-align:left; */
+    padding: 3rem;
+    height: 40vw;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    
+}
+.elige_tarjeta strong{
+   width: 100%;
+}
+.elige_tarjeta p{
+    display:block;
+    font-size: 1rem;
+    width: 100%;
+    padding: 2rem ;
+}
+
+
+@media(  (max-width:550px) ){
+
+    .hero img{
+        width: 100%;
+       
+    }
+    .cards{
+        grid-template-columns: 1fr;  
+    }
+    .card{
+        width: 80vw;
+    }
+    .hero p{
+       
+        font-size: 2rem;
+       
+    }
+    .blackcard_parrafo p{
+        font-size: 1rem;
+        
+    }
+    .blackcard strong{
+        padding: 0;
+        font-size: 1.5rem;
+    }
+    
+    .elige_tarjeta{
+        font-size: 1rem;
+        padding: 1rem; 
+    }
+    .elige_tarjeta p{
+        display:block;
+        font-size: 1rem;
+        width: 100%;
+        padding: 1rem ;
+    }
+
+    .elige_tarjeta p{       
+        padding: 2rem 0 ;
+    }
+    .hero p{
+        width: 80vw;
+        font-size: 2.5rem;
+        padding: 1rem;
+  
+        
+    }
+}
+
+
+@media((min-width:550px) and (max-width:700px)){
+    .cards{
+        grid-template-columns: 1fr;  
+    }
+    .card{
+        width: 80vw;
+    }
+    .hero p{
+       
+        font-size: 2rem;
+       
+    }
+    .blackcard_parrafo p{
+        font-size: 1rem;
+        
+    }
+    .blackcard strong{
+        padding: 0;
+        font-size: 1.5rem;
+    }
+    
+    .elige_tarjeta{
+        font-size: 1rem;
+        padding: 1rem; 
+    }
+    .elige_tarjeta p{
+        display:block;
+        font-size: 1rem;
+        width: 100%;
+        padding: 1rem ;
+    }
+
+    .elige_tarjeta p{       
+        padding: 2rem 0 ;
+    }
+}
+
+
+@media( (min-width:700px) and (max-width:1200px) ){
+   
+    .elige_plan{
+    width: 90vw;
+
+    }
+    .card{
+        padding: 1rem 2rem;
+        margin: 1rem auto;
+        width: 25vw;
+    }
+
+    .blackcard_parrafo p{
+        font-size: 1.5rem;
+        
+    }
+    .blackcard strong{
+        padding: 0;
+        font-size: 2rem;
+    }
+
+    .hero p{
+        font-size: 2rem;
+    }
 }

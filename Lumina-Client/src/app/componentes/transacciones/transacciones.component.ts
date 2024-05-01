@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, FormControl, Validators, NgForm } from '@angular/forms';
 import { TransaccionesService } from '../../services/transacciones.service';
 import { CookieService } from 'ngx-cookie-service';
 import { cuentarequest } from '../../interfaces/Cuenta';
 import { CommonModule } from '@angular/common';
+import { constants } from 'buffer';
  
 @Component({
   selector: 'app-transacciones',
@@ -53,7 +54,26 @@ constructor(private formBuilder: FormBuilder, private transaccionesServicio:Tran
     this.isActive=!this.isActive;
   };
 
-  depositar(){};
+  depositar(){
+    const { accountNumber, cardNumber, CVV, expiryDate, amount} = this.Deposito.value;
+
+    if (this.Deposito.valid){
+      this.transaccionesServicio.depositar(accountNumber, cardNumber, CVV, expiryDate, amount).subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => {
+          alert("Deposito Completo");
+          this.Deposito.reset();
+         
+        }
+        
+      });
+    }
+  };
 
   datos() {
     const  token  = this.cookies.get('token');
@@ -66,8 +86,20 @@ constructor(private formBuilder: FormBuilder, private transaccionesServicio:Tran
           
       },
       complete() {
+
           console.log("completo");
       },
     })
   }
+
+  getTipoCuenta(type: string): string {
+    if (type == '1') {
+      return 'Cuenta de Ahorro';
+    } else if (type == '0') {
+      return 'Cuenta Corriente';
+    } else {
+      return 'Tipo de cuenta desconocido';
+    }
+  }
+
 }

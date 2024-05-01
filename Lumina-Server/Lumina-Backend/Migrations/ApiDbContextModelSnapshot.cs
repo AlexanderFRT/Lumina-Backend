@@ -216,99 +216,66 @@ namespace Lumina_Backend.Migrations
                         new
                         {
                             Id = -1,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 49, 570, DateTimeKind.Utc).AddTicks(2559),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 49, 570, DateTimeKind.Utc).AddTicks(2561),
+                            DateAdded = new DateTime(2024, 5, 1, 20, 25, 30, 908, DateTimeKind.Utc).AddTicks(8448),
+                            DateUpdated = new DateTime(2024, 5, 1, 20, 25, 30, 908, DateTimeKind.Utc).AddTicks(8451),
                             Email = "ajruiz2204@example.com",
                             FullName = "Alejandro Ruíz",
-                            Password = "$2a$11$Y0fp3sgSejmaNgif/bLBU.4O5MsShaNE7wVjcyHMNJiplYubBOdCW",
+                            Password = "$2a$11$vutuXe.txmwo6pMxRxXbiO847TBA5Gr32niuz4u93p.UyCmBmAmSy",
                             Status = "Unverified",
                             UserName = "ajruiz2204"
                         },
                         new
                         {
                             Id = -2,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 49, 685, DateTimeKind.Utc).AddTicks(4831),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 49, 685, DateTimeKind.Utc).AddTicks(4835),
+                            DateAdded = new DateTime(2024, 5, 1, 20, 25, 31, 42, DateTimeKind.Utc).AddTicks(4607),
+                            DateUpdated = new DateTime(2024, 5, 1, 20, 25, 31, 42, DateTimeKind.Utc).AddTicks(4611),
                             Email = "alexanderfrt@example.com",
                             FullName = "Alexander Flores",
-                            Password = "$2a$11$/Q46ZB8iGyOjl8HeTkXkf.k.Eta4T1GQWyBR.brDPOKnLxonOeyxC",
+                            Password = "$2a$11$acWjE3hiMXsUDdMP6Accfu2frshw8y92zwg9RQrbpC8i/TnJ/l7ry",
                             Status = "Unverified",
                             UserName = "AlexanderFRT"
                         },
                         new
                         {
                             Id = -3,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 49, 805, DateTimeKind.Utc).AddTicks(3030),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 49, 805, DateTimeKind.Utc).AddTicks(3034),
-                            Email = "4rnol@example.com",
-                            FullName = "Arnol Flores",
-                            Password = "$2a$11$/uJ073oAhWMsT0sZYg0ps.2NfK.NOIFY7kKvkFWTQaDsc1U2ZQYaC",
-                            Status = "Unverified",
-                            UserName = "4rnol"
-                        },
-                        new
-                        {
-                            Id = -4,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 49, 924, DateTimeKind.Utc).AddTicks(8399),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 49, 924, DateTimeKind.Utc).AddTicks(8403),
-                            Email = "ema_ramirez@example.com",
-                            FullName = "Emanuel Ramirez",
-                            Password = "$2a$11$bNRM4R0dPdKL7YywTBHz7.nHfAO5E4wbge4BLEfZU99EeJ3Cgm8rO",
-                            Status = "Unverified",
-                            UserName = "ema_ramirez"
-                        },
-                        new
-                        {
-                            Id = -5,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 50, 42, DateTimeKind.Utc).AddTicks(2956),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 50, 42, DateTimeKind.Utc).AddTicks(2959),
+                            DateAdded = new DateTime(2024, 5, 1, 20, 25, 31, 175, DateTimeKind.Utc).AddTicks(2698),
+                            DateUpdated = new DateTime(2024, 5, 1, 20, 25, 31, 175, DateTimeKind.Utc).AddTicks(2703),
                             Email = "ezealeguzman@example.com",
                             FullName = "Ezequiel Guzman",
-                            Password = "$2a$11$tCj8dO9fuiEnvi43eYSRY.c7OPuL5qlqndJqrIMPsPeosZtaPenEa",
+                            Password = "$2a$11$DIauooOGsf7vKAVrolsKR.z/gI8RqWF7kUvredYDaL6RmmRDlNSaS",
                             Status = "Unverified",
                             UserName = "ezealeguzman"
                         },
                         new
                         {
-                            Id = -6,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 50, 167, DateTimeKind.Utc).AddTicks(6635),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 50, 167, DateTimeKind.Utc).AddTicks(6640),
+                            Id = -4,
+                            DateAdded = new DateTime(2024, 5, 1, 20, 25, 31, 301, DateTimeKind.Utc).AddTicks(6609),
+                            DateUpdated = new DateTime(2024, 5, 1, 20, 25, 31, 301, DateTimeKind.Utc).AddTicks(6613),
                             Email = "facu597@example.com",
                             FullName = "Facundo Castro",
-                            Password = "$2a$11$ZVJbHHGVIYx1Ohwl.M0U3eeC/6kqfjRCv7WjD4OrfKJy2IcDgDHcq",
+                            Password = "$2a$11$Mm1cuR86P/gMJfgon84GEOeP9/JA5CzBSjLu4mXHZyY9zd0STMnK2",
                             Status = "Unverified",
                             UserName = "facu597"
                         },
                         new
                         {
-                            Id = -7,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 50, 287, DateTimeKind.Utc).AddTicks(2087),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 50, 287, DateTimeKind.Utc).AddTicks(2091),
-                            Email = "giolucc@example.com",
-                            FullName = "Giovanni Lucchetta",
-                            Password = "$2a$11$fC13mUsQqRvi2Plth1QpqeZhMkfkJrfBWJwuCp8L.L/v4bJJuERMO",
-                            Status = "Unverified",
-                            UserName = "giolucc"
-                        },
-                        new
-                        {
-                            Id = -8,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 50, 404, DateTimeKind.Utc).AddTicks(9572),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 50, 404, DateTimeKind.Utc).AddTicks(9576),
+                            Id = -5,
+                            DateAdded = new DateTime(2024, 5, 1, 20, 25, 31, 432, DateTimeKind.Utc).AddTicks(5799),
+                            DateUpdated = new DateTime(2024, 5, 1, 20, 25, 31, 432, DateTimeKind.Utc).AddTicks(5803),
                             Email = "karla6524@example.com",
                             FullName = "Karla Chavez",
-                            Password = "$2a$11$xHXAwH9jIz3utBTCf4be4ObHsnR1hRCRQnREhkVwFqPS8IOWG6UiS",
+                            Password = "$2a$11$.0Kc5qA/xb5pvKBu1RFXa.w/LjKuszyBMpPvjKGiX5udtT2FhtZ8K",
                             Status = "Unverified",
                             UserName = "karla6524"
                         },
                         new
                         {
-                            Id = -9,
-                            DateAdded = new DateTime(2024, 4, 21, 23, 34, 50, 521, DateTimeKind.Utc).AddTicks(196),
-                            DateUpdated = new DateTime(2024, 4, 21, 23, 34, 50, 521, DateTimeKind.Utc).AddTicks(199),
+                            Id = -6,
+                            DateAdded = new DateTime(2024, 5, 1, 20, 25, 31, 558, DateTimeKind.Utc).AddTicks(5640),
+                            DateUpdated = new DateTime(2024, 5, 1, 20, 25, 31, 558, DateTimeKind.Utc).AddTicks(5644),
                             Email = "mabel8750_@example.com",
                             FullName = "Mabel Ceballos",
-                            Password = "$2a$11$tPVtFLamiFjGDIMSR9dvBedVUbuElSw0oKAY.5E4CkHUiHIAIBXhO",
+                            Password = "$2a$11$4Dkesh9F3O/egy9V8G3cCuA.CzOc5Mggzl0hDGAE1Ca6icLypnwg2",
                             Status = "Unverified",
                             UserName = "mabel8750_"
                         });

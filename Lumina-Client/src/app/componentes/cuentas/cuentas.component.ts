@@ -42,4 +42,22 @@ constructor(private transaccionesServicio : TransaccionesService, private cookie
       },
     })
   }
+
+  getTipoCuenta(type: string): string {
+    if (type == '1') {
+      return 'Cuenta de Ahorro';
+    } else if (type == '0') {
+      return 'Cuenta Corriente';
+    } else {
+      return 'Tipo de cuenta desconocido';
+    }
+  }
+
+  calcularSaldoTotal(cuentas: cuentarequest[]): number {
+    let saldoTotal = 0;
+    for (let cuenta of cuentas) {
+      saldoTotal += parseInt(cuenta.balance);
+    }
+    return saldoTotal;
+  }
 }

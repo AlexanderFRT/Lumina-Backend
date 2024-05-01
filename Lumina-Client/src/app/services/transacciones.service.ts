@@ -16,7 +16,7 @@ export class TransaccionesService {
       'Authorization': `Bearer ${token}`
     });  
     // Enviar la solicitud POST al backend
-    return this.http.get<any>('http://localhost:5001/api/Deposits/ListaDeCuentas',  { headers: headers });
+    return this.http.get<any>('https://luminabank.somee.com/api/Deposits/ListaDeCuentas',  { headers: headers });
   }
 
 
@@ -26,6 +26,6 @@ export class TransaccionesService {
     const accountNumberInt = parseInt(accountNumber, 10);
     const amountInt = parseFloat(amount);
     // Enviar la solicitud POST al backend
-    return this.http.post<any>('http://localhost:5001/api/Deposits/DepositarSaldo',  { accountNumberInt, amountInt , cardNumber, expiryDate, cvv});
+    return this.http.post<any>('https://luminabank.somee.com/api/Deposits/DepositarSaldo',  { accountNumberInt, amountInt , cardNumber, expiryDate, cvv});
   }
 }

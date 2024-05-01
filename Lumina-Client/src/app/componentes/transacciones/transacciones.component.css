@@ -2,18 +2,20 @@
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    /* position: relative; */
+    position: relative;
     overflow: hidden;
     max-width: 80%;
     min-height: 900px; 
     display: flex;
+    margin-top: 40px;
+    margin-left: 160px;
 }
 
 .container p{
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
-    margin: 20px 0;
+    
 }
 
 .container span{
@@ -142,6 +144,7 @@
     transition: all 0.6s ease-in-out;
     border-radius: 150px 0 0 100px;
     z-index: 1000;
+    
 }
 
 .container.active .toggle-container{

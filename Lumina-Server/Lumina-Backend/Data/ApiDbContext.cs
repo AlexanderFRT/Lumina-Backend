@@ -73,13 +73,10 @@ namespace Lumina_Backend.Data
             {
                 new() { Id = -1, UserName = "ajruiz2204", Password = HashPassword("123456"), Email = "ajruiz2204@example.com", FullName = "Alejandro Ruíz"},
                 new() { Id = -2, UserName = "AlexanderFRT", Password = HashPassword("123456"), Email = "alexanderfrt@example.com", FullName = "Alexander Flores"},
-                new(){ Id = -3, UserName = "4rnol", Password = HashPassword("123456"), Email = "4rnol@example.com", FullName = "Arnol Flores"},
-                new() { Id = -4, UserName = "ema_ramirez", Password = HashPassword("123456"), Email = "ema_ramirez@example.com", FullName = "Emanuel Ramirez"},
-                new() { Id = -5, UserName = "ezealeguzman", Password = HashPassword("123456"), Email = "ezealeguzman@example.com", FullName = "Ezequiel Guzman"},
-                new() { Id = -6, UserName = "facu597", Password = HashPassword("123456"), Email = "facu597@example.com", FullName = "Facundo Castro"},
-                new() { Id = -7, UserName = "giolucc", Password = HashPassword("123456"), Email = "giolucc@example.com", FullName = "Giovanni Lucchetta"},
-                new() { Id = -8, UserName = "karla6524", Password = HashPassword("123456"), Email = "karla6524@example.com", FullName = "Karla Chavez"},
-                new() { Id = -9, UserName = "mabel8750_", Password = HashPassword("123456"), Email = "mabel8750_@example.com", FullName = "Mabel Ceballos"}
+                new() { Id = -3, UserName = "ezealeguzman", Password = HashPassword("123456"), Email = "ezealeguzman@example.com", FullName = "Ezequiel Guzman"},
+                new() { Id = -4, UserName = "facu597", Password = HashPassword("123456"), Email = "facu597@example.com", FullName = "Facundo Castro"},
+                new() { Id = -5, UserName = "karla6524", Password = HashPassword("123456"), Email = "karla6524@example.com", FullName = "Karla Chavez"},
+                new() { Id = -6, UserName = "mabel8750_", Password = HashPassword("123456"), Email = "mabel8750_@example.com", FullName = "Mabel Ceballos"}
             };
             builder.Entity<User>().HasData(demoUsers);
          }
