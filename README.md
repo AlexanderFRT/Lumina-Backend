@@ -3,7 +3,7 @@
   <div align='center'>
   <h3>Nos alegra darles la bienvenida a</h3>
   <a href="https://github.com/No-Country/c17-116-n-csharp" target="_blank">
-    <img src="https://raw.githubusercontent.com/No-Country/c17-116-n-csharp/main/Lumina-Client/src/assets/readme-gallery/main-logo.png" alt="Banner">
+    <img src="https://raw.githubusercontent.com/AlexanderFRT/Lumina-Bank/main/Lumina-Client/src/assets/readme-gallery/main-logo.png" alt="Banner">
   </a></div>
 <div>
   <p>
@@ -17,7 +17,7 @@
           <img  src="https://img.shields.io/badge/NUESTRO_WEBSITE-8B008B?style=for-the-badge&logo=googlechrome&logoColor=%23FFFFFF"/>
       </a>
       <a href="https://github.com/No-Country/c17-116-n-csharp/issues" target="_blank">
-          <img  src="https://img.shields.io/badge/REPORTAR_BUG-8B008B?style=for-the-badge"/>
+          <img  src="https://img.shields.io/badge/REPORTAR_BUG-8B008B?style=for-the-badge&logo=malwarebytes&logoColor=%23FFFFFF"/>
       </a>
       </div>
 </div>
@@ -25,7 +25,7 @@
 <!-- ABOUT THE PLATFORM -->
 <br>
 <h1> 
-  <img src="https://raw.githubusercontent.com/No-Country/c17-116-n-csharp/main/Lumina-Client/src/assets/readme-gallery/icon.png" width="38px" align='left'>
+  <img src="https://raw.githubusercontent.com/AlexanderFRT/Lumina-Bank/main/Lumina-Client/src/assets/readme-gallery/icon.png" width="38px" align='left'>
   Acerca del Proyecto
 </h1>
 
@@ -83,6 +83,7 @@ Lumina Bank representa una opción conveniente y accesible para satisfacer las n
 ![Somee](https://img.shields.io/static/v1?style=for-the-badge&message=Somee&color=FF9400&logo=googleearth&logoColor=white&label=)
 ![ElephantSQL](https://img.shields.io/static/v1?style=for-the-badge&message=ElephantSQL&color=336791&logo=PostgreSQL&logoColor=white&label=)
 ![Docker](https://img.shields.io/static/v1?style=for-the-badge&message=Docker&color=2496ED&logo=Docker&logoColor=white&label=)
+![Render](https://img.shields.io/static/v1?style=for-the-badge&message=Render&color=41DC8E&logo=Render&logoColor=white&label=)
 
 <!-- TEAMMATES -->
 <br>
