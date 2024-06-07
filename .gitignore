@@ -1,5 +1,8 @@
 .vs
+.idea
+.QA
 Lumina-Server/LuminaDeployment
 Lumina-Server/Lumina-Backend/obj/
 Lumina-Server/Lumina-Backend/bin/
-.idea
+LICENSE
+README.md
